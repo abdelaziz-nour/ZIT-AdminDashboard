@@ -34,17 +34,14 @@ class DatabaseHelper {
   }
 
   loginData({required String username, required String password}) async {
-    Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com//login');
+    Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com//adminlogin');
     final response = await http
         .post(myUrl, body: {"username": username, "password": password});
     var data = json.decode(response.body);
     success = data['success'];
-    //print('success = $success');
     if (success) {
       _save(data['data']['token']);
-      //print(data['data']['token']);
     } else {
-      //print(data['message']);
     }
   }
 
@@ -73,7 +70,6 @@ class DatabaseHelper {
         headers: {'Authorization': 'token $value'}, body: {"Store": "$id"});
     var data = json.decode(response.body);
     success = data['success'];
-    // print(data['data']);
     return data['data'];
   }
 
@@ -87,8 +83,6 @@ class DatabaseHelper {
         headers: {'Authorization': 'token $value'}, body: {"Store": "$id"});
     var data = json.decode(response.body);
     success = data['success'];
-    print(data['data']);
-
     return data['data'];
   }
 
@@ -134,7 +128,6 @@ class DatabaseHelper {
         body: {"Store": id.toString()});
     var data = json.decode(response.body);
     success = data['success'];
-    print(data);
     return data;
   }
 }
