@@ -1,21 +1,23 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:zit_admin_screens/api/apiRequests.dart';
 
 import '../constant.dart';
 
 class storeinforow extends StatelessWidget {
+  final int id;
   final String username;
   final String email;
   final String StoreName;
 
-  const storeinforow(
+  storeinforow(
+    this.id,
     this.username,
     this.email,
     this.StoreName,
   );
-
-  // ignore: empty_constructor_bodies
+  DatabaseHelper databaseHelper = DatabaseHelper();
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -56,6 +58,30 @@ class storeinforow extends StatelessWidget {
                     // ignore: prefer_const_constructors
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(right: 100.0, top: 10, bottom: 8),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ))),
+                      child: Text(
+                        'حذف المتجر',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Pcolor),
+                      ),
+                      onPressed: () async {
+                        print(id);
+                        await databaseHelper.deleteStore(id: id);
+                      }),
                 ),
               ],
             ),

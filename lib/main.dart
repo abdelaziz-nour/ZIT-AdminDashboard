@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         title: 'zit project',
         debugShowCheckedModeBanner: false,
-        home: storeinfo(),
+        home: log_in(),
         //start localizations
         // ignore: prefer_const_literals_to_create_immutables
         localizationsDelegates: [

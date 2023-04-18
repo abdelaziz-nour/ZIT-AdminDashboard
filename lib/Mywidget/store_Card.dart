@@ -13,12 +13,11 @@ class Storecard extends StatelessWidget {
   final String StoreManagerName;
 
   const Storecard(
-    
     this.image,
     this.StoreName,
-    this.StoreManagerName,
-    {required this.id,}
-  );
+    this.StoreManagerName, {
+    required this.id,
+  });
 
   // ignore: empty_constructor_bodies
   @override
@@ -133,7 +132,7 @@ class Storecard extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return products(id : id);
+                        return products(id: id);
                       }));
                     },
                   ),
@@ -161,7 +160,9 @@ class Storecard extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return payments(id: id,);
+                        return payments(
+                          id: id,
+                        );
                       }));
                     },
                   ),

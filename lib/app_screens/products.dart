@@ -208,23 +208,11 @@ class productsState extends State<products> {
                                 snapshot.data![index]['Name'],
                                 snapshot.data![index]['Category'],
                                 snapshot.data![index]['Price']);
-                            // Storecard(
-                            //   'http://vzzoz.pythonanywhere.com${snapshot.data![index]['Image']}',
-                            //   snapshot.data![index]['Name'],
-                            //   snapshot.data![index]['Owner'],
-                            //   id: snapshot.data![index]['id'],
-                            // );
                           },
                         );
                       },
                     ),
                   ),
-                  // const Productinforow(
-                  //     'images/im.jpj.jpg', "لابتوب", "الكترونيات", "90000"),
-                  // const Productinforow(
-                  //     'images/im.jpj.jpg', "تلفون", "الكترونيات", "45000"),
-                  // const Productinforow(
-                  //     'images/im.jpj.jpg', "سماعه", "الكترونيات", "400"),
                 ],
               ),
             ),

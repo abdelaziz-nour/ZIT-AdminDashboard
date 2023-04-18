@@ -241,7 +241,6 @@ class paymentsState extends State<payments> {
                               );
                             },
                           );
-
                         },
                       ),
                     ),

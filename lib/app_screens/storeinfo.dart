@@ -195,31 +195,21 @@ class storeinfoState extends State<storeinfo> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const CircularProgressIndicator(); // Show a loading indicator while data is being fetched
+                          return const CircularProgressIndicator();
                         }
                         return ListView.builder(
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
                             return storeinforow(
+                                snapshot.data![index]['id'],
                                 snapshot.data![index]['UserName'],
                                 snapshot.data![index]['Email'],
                                 snapshot.data![index]['Store']);
-                            // Storecard(
-                            //     'http://vzzoz.pythonanywhere.com${snapshot.data![index]['Image']}',
-                            //     snapshot.data![index]['Name'],
-                            //     snapshot.data![index]['Owner'],
-                            //     id :snapshot.data![index]['id'],
-                            //   );
                           },
                         );
                       },
                     ),
                   ),
-
-                  ///
-                  ///
-                  // storeinforow("دعاش", "d@gmail.com", "زول اي تي"),
-                  // storeinforow("دعاش", "d@gmail.com", "زول اي تي"),
                 ],
               ),
             ),

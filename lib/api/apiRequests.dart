@@ -56,9 +56,7 @@ class DatabaseHelper {
     print(myUrl);
     var response = await http.get(
       myUrl,
-      headers: {
-        'Authorization': 'token $value'
-      },
+      headers: {'Authorization': 'token $value'},
     );
     var data = json.decode(response.body);
     success = data['success'];
@@ -71,11 +69,8 @@ class DatabaseHelper {
     final value = prefs.get(key) ?? 0;
 
     Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com/getstoreproducts');
-    var response = await http.post(myUrl, headers: {
-      'Authorization': 'token $value'
-    }, body: {
-      "Store": "$id"
-    });
+    var response = await http.post(myUrl,
+        headers: {'Authorization': 'token $value'}, body: {"Store": "$id"});
     var data = json.decode(response.body);
     success = data['success'];
     // print(data['data']);
@@ -88,11 +83,8 @@ class DatabaseHelper {
     final value = prefs.get(key) ?? 0;
 
     Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com/getstoreorders');
-    var response = await http.post(myUrl, headers: {
-      'Authorization': 'token $value'
-    }, body: {
-      "Store": "$id"
-    });
+    var response = await http.post(myUrl,
+        headers: {'Authorization': 'token $value'}, body: {"Store": "$id"});
     var data = json.decode(response.body);
     success = data['success'];
     print(data['data']);
@@ -106,13 +98,43 @@ class DatabaseHelper {
     final value = prefs.get(key) ?? 0;
 
     Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com/getusers');
-    var response = await http.get(myUrl, headers: {
-      'Authorization': 'token $value'
-    });
+    var response =
+        await http.get(myUrl, headers: {'Authorization': 'token $value'});
+    var data = json.decode(response.body);
+    success = data['success'];
+    return data['data'];
+  }
+
+  addStore(
+      {required int id, required String storename, required var image}) async {
+    final prefs = await SharedPreferences.getInstance();
+    const key = 'token';
+    final value = prefs.get(key) ?? 0;
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse("http://vzzoz.pythonanywhere.com/addstore"),
+    );
+
+    request.headers["Authorization"] = "token $value";
+    request.fields["ID"] = id.toString();
+    request.fields["Name"] = storename;
+    request.files.add(image);
+    var response = await request.send();
+    printStreamedResponse(response);
+  }
+
+  deleteStore({required int id}) async {
+    final prefs = await SharedPreferences.getInstance();
+    const key = 'token';
+    final value = prefs.get(key) ?? 0;
+
+    Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com/deletestore');
+    var response = await http.post(myUrl,
+        headers: {'Authorization': 'token $value'},
+        body: {"Store": id.toString()});
     var data = json.decode(response.body);
     success = data['success'];
     print(data);
-
-    return data['data'];
+    return data;
   }
 }
