@@ -1,23 +1,50 @@
-import 'dart:io';
-import 'package:http/http.dart';
-import 'package:image_picker/image_picker.dart';
+import 'dart:typed_data';
+import 'package:flutter/material.dart';
+import 'package:image_picker_web/image_picker_web.dart';
+import 'package:zit_admin_screens/constant.dart';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 class MyFunctions {
-  /// Get Image From Gallery
-  getFromGallery() async {
-    final picker = ImagePicker();
+  Future<http.MultipartFile> pickAndConvertToMultipartFile() async {
+    Uint8List? imageFile = await ImagePickerWeb.getImageAsBytes();
 
-    // use the image picker to pick image from Gallery
-    var file = await picker.pickImage(
-      source: ImageSource.gallery,
-    );
+    if (imageFile == null) {
+      throw ArgumentError('Image file is null');
+    }
 
-    // convert the picked image to Multipart file to upload using http
-    var mFile = MultipartFile.fromBytes(
-      "payment_Notification",
-      File(file?.path ?? "").readAsBytesSync(),
-      filename: "Notification Image",
+    final imageBytes = http.ByteStream.fromBytes(imageFile);
+    final imageLength = imageFile.length;
+    const imageFilename = 'Image.png';
+
+    return http.MultipartFile(
+      'Image',
+      imageBytes,
+      imageLength,
+      filename: imageFilename,
+      contentType: MediaType('image', 'png'),
     );
-    print(mFile.toString());
+  }
+
+  noImageField(
+    context,
+  ) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: const Text("خطأ"),
+              content: const Text("حقل الصورة مطلوب"),
+              actions: <Widget>[
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Pcolor),
+                    child: const Text(
+                      "إغلاق",
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    })
+              ]);
+        });
   }
 }

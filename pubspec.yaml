@@ -40,6 +40,8 @@ dependencies:
   google_fonts: ^2.1.0
   image_picker: ^0.8.7+1
   sizer: ^2.0.15
+  shared_preferences: ^2.1.0
+  image_picker_web: ^3.0.0+1
   
 
 dev_dependencies:
