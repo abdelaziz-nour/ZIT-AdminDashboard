@@ -8,7 +8,7 @@ import 'package:zit_admin_screens/constant.dart';
 
 class products extends StatefulWidget {
   products({required this.id});
-  final int id;
+  final String id;
 
   @override
   State<StatefulWidget> createState() {
@@ -18,7 +18,7 @@ class products extends StatefulWidget {
 
 class productsState extends State<products> {
   productsState(this.id);
-  final int id;
+  final String id;
   DatabaseHelper databaseHelper = DatabaseHelper();
   @override
   Widget build(BuildContext context) {

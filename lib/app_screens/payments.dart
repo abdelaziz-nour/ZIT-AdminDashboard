@@ -9,7 +9,7 @@ import '../Mywidget/payments_Info_Row.dart';
 
 class payments extends StatefulWidget {
   payments({required this.id});
-  final int id;
+  final String id;
   @override
   State<StatefulWidget> createState() {
     return paymentsState(id);
@@ -18,7 +18,7 @@ class payments extends StatefulWidget {
 
 class paymentsState extends State<payments> {
   paymentsState(this.id);
-  final int id;
+  final String id;
   DatabaseHelper databaseHelper = DatabaseHelper();
   @override
   Widget build(BuildContext context) {

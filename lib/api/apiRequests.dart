@@ -41,8 +41,7 @@ class DatabaseHelper {
     success = data['success'];
     if (success) {
       _save(data['data']['token']);
-    } else {
-    }
+    } else {}
   }
 
   Future<List> getStores() async {
@@ -60,7 +59,7 @@ class DatabaseHelper {
     return data['data'];
   }
 
-  Future<List> getStoreProducts({required int id}) async {
+  Future<List> getStoreProducts({required String id}) async {
     final prefs = await SharedPreferences.getInstance();
     const key = 'token';
     final value = prefs.get(key) ?? 0;
@@ -73,7 +72,7 @@ class DatabaseHelper {
     return data['data'];
   }
 
-  Future<List> getStoreOrders({required int id}) async {
+  Future<List> getStoreOrders({required String id}) async {
     final prefs = await SharedPreferences.getInstance();
     const key = 'token';
     final value = prefs.get(key) ?? 0;
