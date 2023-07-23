@@ -1,47 +1,47 @@
+
 import 'package:flutter/material.dart';
-import 'package:zit_admin_screens/api/apiRequests.dart';
-import 'package:zit_admin_screens/app_screens/admin_board.dart';
-import 'package:zit_admin_screens/app_screens/storeinfo.dart';
-import 'package:zit_admin_screens/app_screens/stores.dart';
-import 'package:zit_admin_screens/constant.dart';
+import 'package:zit_admin_screens/Mywidget/order_info_Row.dart';
 
-import '../Mywidget/payments_Info_Row.dart';
-
-class payments extends StatefulWidget {
-  payments({required this.id});
-  final int id;
+import '../constant.dart';
+import 'admin_board.dart';
+import 'storeinfo.dart';
+import 'stores.dart';
+class orderscreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return paymentsState(id);
+    return orderscreenState();
   }
 }
-
-class paymentsState extends State<payments> {
-  paymentsState(this.id);
-  final int id;
-  DatabaseHelper databaseHelper = DatabaseHelper();
+  class orderscreenState extends State<orderscreen>{
+    
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+     double screenWidth = MediaQuery.of(context).size.width;
+     double screenHeight = MediaQuery.of(context).size.height;
      final isDesktop =MediaQuery.of(context).size.width>=1200;
     final ismobile =MediaQuery.of(context).size.width<=600;
+      
+      
+     
     return Scaffold(
+
       backgroundColor: Colors.white,
-        appBar: AppBar(
-            backgroundColor: Pcolor,
-            title: const Center(
-              child: Text(
-                'الدفعيات',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+       appBar: AppBar(
+          backgroundColor: Pcolor,
+          title: const Center(
+            child: Text(
+              'جميع الطلبات',
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-            )),
-        body: Row(children: [
-          isDesktop?
+            ),
+          )),
+      body: LayoutBuilder(
+        builder:(BuildContext context,BoxConstraints constraints){
+          return   Row(children: [
+            isDesktop?
           SizedBox(
             width: 200,
             height: screenHeight,
@@ -164,91 +164,56 @@ class paymentsState extends State<payments> {
                       height: 70,
                       color: Colors.white,
                       child: Row(
+                        
                         // ignore: prefer_const_literals_to_create_immutables
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 15.0, right: 50),
+                          isDesktop?
+                           Padding(
+                            
+                            padding: EdgeInsets.only(top: 15.0, right:isDesktop?50:20),
                             child: Text(
-                              'اسم المنتج',
+                              ' رقم الطلب',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                          ),
+                          ):Container(),
+                          isDesktop?
                           const Padding(
                             padding: EdgeInsets.only(top: 15.0, right: 100),
                             // ignore: prefer_const_constructors
                             child: Text(
-                              '  الكميه ',
+                              '  المتجر ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                          ),
+                          ):Container(),
+                          isDesktop?
                           const Padding(
                             padding: EdgeInsets.only(top: 15.0, right: 150),
                             // ignore: prefer_const_constructors
                             child: Text(
-                              ' سعر المنتج ',
+                              '  المشتري ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                          ),
+                          ):Container(),
                           const Padding(
                             padding: EdgeInsets.only(top: 15.0, right: 200),
                             // ignore: prefer_const_constructors
                             child: Text(
-                              ' تاريخ البيع',
+                              ' تاريخ الطلب',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
                           const Padding(
-                            padding: EdgeInsets.only(top: 15.0, right: 200),
+                            padding: EdgeInsets.only(top: 15.0, right: 160),
                             // ignore: prefer_const_constructors
                             child: Text(
-                              '  المشتري',
+                              '  المبلغ ',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: StreamBuilder(
-                        stream: databaseHelper
-                            .getStoreOrders(id: id)
-                            .asStream(), // Replace with your own stream
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const CircularProgressIndicator(); // Show a loading indicator while data is being fetched
-                          }
-                          return ListView.builder(
-                            itemCount: snapshot.data!.length - 1,
-                            itemBuilder: (context, index) {
-                              var order = snapshot.data![index];
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: const ClampingScrollPhysics(),
-                                    itemCount: order['OrderItems'].length,
-                                    itemBuilder: (context, itemIndex) {
-                                      var orderItem =
-                                          order['OrderItems'][itemIndex];
-                                      return paymentsinforow(
-                                          orderItem['ProductName'],
-                                          orderItem['Quantity'].toString(),
-                                          orderItem['Price'],
-                                          order['CreatedOn'],
-                                          order['CreatedBy']);
-                                    },
-                                  ),
-                                  Divider(),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ])))
-        ]));
-  }
-}
+                    orderinforow("2", "azoz", "mai", "22-1-2020", "35000")
+                    ])
+                    ))]);
+          }));}}

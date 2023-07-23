@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:zit_admin_screens/app_screens/allproduct.dart';
+import 'package:zit_admin_screens/app_screens/orders.dart';
 import 'package:zit_admin_screens/app_screens/storeinfo.dart';
 import 'package:zit_admin_screens/app_screens/stores.dart';
 import 'package:zit_admin_screens/constant.dart';
@@ -18,8 +20,11 @@ class boardState extends State<board> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    //  final isdesktop=MediaQuery.of(context).size.width>=900;
-    //  final ismobile=MediaQuery.of(context).size.width<1280;
+
+     final isDesktop =MediaQuery.of(context).size.width>=800;
+    final ismobile =MediaQuery.of(context).size.width<=600;
+    
+    
 
     return Scaffold(
         appBar: AppBar(
@@ -34,22 +39,25 @@ class boardState extends State<board> {
                 ),
               ),
             )),
-        body: Row(children: [
+        body:LayoutBuilder(
+        builder:(BuildContext context,BoxConstraints constraints){
+          return   Row(children: [
+            isDesktop?
           SizedBox(
-            width: 15.w,
-            height: 700.h,
+            
+            width: 200,
+            height: screenHeight,
             child: Container(
-              width: 15.w,
-              //screenWidth/3,
-              height: 700.h,
+              width: screenWidth / 3,
+              height: screenHeight,
               color: Pcolor,
               child: Column(children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 5.h, right: 1.h),
+                const Padding(
+                  padding: EdgeInsets.all(20.0),
                   child: Text(
                     'أهلاً بك',
                     style: TextStyle(
-                      fontSize: 8.sp,
+                      fontSize: 20,
                       fontStyle: FontStyle.italic,
                       color: Colors.white,
                     ),
@@ -57,28 +65,36 @@ class boardState extends State<board> {
                 ),
                 Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(1.5.h),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Icon(
                         Icons.home,
                         color: Colors.white,
-                        size: 6.sp,
                       ),
                     ),
-                    Text(
-                      'الرئيسيه',
-                      style: TextStyle(color: Colors.white, fontSize: 4.sp),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const board();
+                        }));
+                      },
+                      child: const Text(
+                        'الرئيسيه',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     )
                   ],
                 ),
                 Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(1.5.h),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Icon(
                         Icons.store,
                         color: Colors.white,
-                        size: 6.sp,
                       ),
                     ),
                     GestureDetector(
@@ -88,20 +104,21 @@ class boardState extends State<board> {
                           return const store();
                         }));
                       },
-                      child: Text(
+                      child: const Text(
                         'المتاجر',
-                        style: TextStyle(color: Colors.white, fontSize: 4.sp),
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                     )
                   ],
                 ),
                 Row(children: [
-                  Padding(
-                    padding: EdgeInsets.all(1.5.h),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.person,
                       color: Colors.white,
-                      size: 6.sp,
                     ),
                   ),
                   GestureDetector(
@@ -111,51 +128,54 @@ class boardState extends State<board> {
                         return storeinfo();
                       }));
                     },
-                    child: Text(
+                    child: const Text(
                       'المستخدمين',
-                      style: TextStyle(color: Colors.white, fontSize: 4.sp),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   )
                 ]),
-                Row(children: [
+                Row(children: const [
                   Padding(
-                    padding: EdgeInsets.all(1.5.h),
+                    padding: EdgeInsets.all(8.0),
                     child: Icon(
                       Icons.logout_sharp,
                       color: Colors.white,
-                      size: 6.sp,
                     ),
                   ),
                   Text(
                     'تسجيل الخروج',
-                    style: TextStyle(color: Colors.white, fontSize: 4.sp),
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   )
                 ]),
               ]),
             ),
-          ),
+          ):Container(),
           Expanded(
-              // flex:5,
+               flex:5,
               child: Container(
-                  width: 700.h,
-                  height: 700.h,
+                  width: 700,
+                  height: 700,
                   color: Colors.white,
                   child: Column(children: [
                     Row(children: [
                       Padding(
-                        padding: EdgeInsets.only(right: 30.0.h, top: 15.h),
+                        padding: EdgeInsets.only(right:screenWidth/4, top: screenHeight/4),
                         child: Container(
-                          width: 13.w,
-                          height: 17.h,
+                          width: 141,
+                          height: 141,
                           child: Row(
                             children: [
                               Icon(
                                 Icons.storefront_outlined,
                                 color: Colors.white,
-                                size: 6.sp,
+                                size: 20,
                               ),
                               Padding(
-                                padding: EdgeInsets.all(2.5.w),
+                                padding: EdgeInsets.only(right: 10,top:10),
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.push(context,
@@ -163,10 +183,13 @@ class boardState extends State<board> {
                                       return const store();
                                     }));
                                   },
-                                  child: Text(
-                                    "المتاجر",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 5.sp),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "المتاجر",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize:17),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -178,19 +201,19 @@ class boardState extends State<board> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(right: 15.0.h, top: 15.h),
+                        padding: EdgeInsets.only(right:screenWidth/7, top: screenHeight/4),
                         child: Container(
-                          width: 13.w,
-                          height: 17.h,
+                          width: 141,
+                          height: 141,
                           child: Row(
                             children: [
                               Icon(
                                 Icons.person,
                                 color: Colors.white,
-                                size: 4.sp,
+                                size: 20,
                               ),
                               Padding(
-                                padding: EdgeInsets.all(1.w),
+                                 padding: EdgeInsets.only(top:10),
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.push(context,
@@ -198,10 +221,13 @@ class boardState extends State<board> {
                                       return storeinfo();
                                     }));
                                   },
-                                  child: Text(
-                                    "المستخدمين",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 5.sp),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "المستخدمين",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 17),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -215,30 +241,30 @@ class boardState extends State<board> {
                     ]),
                     Row(children: [
                       Padding(
-                        padding: EdgeInsets.only(right: 30.0.h, top: 15.h),
+                        padding: EdgeInsets.only(right:screenWidth/4, top: screenHeight/6),
                         child: Container(
-                          width: 13.w,
-                          height: 17.h,
+                          width: 141,
+                          height: 141,
                           child: Row(
                             children: [
                               Icon(
-                                Icons.storefront_outlined,
+                                Icons.production_quantity_limits_outlined,
                                 color: Colors.white,
-                                size: 6.sp,
+                                size: 20,
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(2.5.w),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return const store();
-                                    }));
-                                  },
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return  allProductscreen();
+                                  }));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "",
+                                    "جميع المنتجات",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 5.sp),
+                                        color: Colors.white, fontSize: 18),
                                   ),
                                 ),
                               ),
@@ -250,30 +276,30 @@ class boardState extends State<board> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(right: 15.0.h, top: 15.h),
+                        padding: EdgeInsets.only(right:screenWidth/7, top: screenHeight/6),
                         child: Container(
-                          width: 13.w,
-                          height: 17.h,
+                          width: 141,
+                          height: 141,
                           child: Row(
                             children: [
                               Icon(
-                                Icons.storefront_outlined,
+                                Icons.list,
                                 color: Colors.white,
-                                size: 6.sp,
+                                size: 20,
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(2.5.w),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return const store();
-                                    }));
-                                  },
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return  orderscreen();
+                                  }));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    "",
+                                    "جميع الطلبات",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 5.sp),
+                                        color: Colors.white, fontSize: 18),
                                   ),
                                 ),
                               ),
@@ -286,6 +312,6 @@ class boardState extends State<board> {
                       ),
                     ])
                   ])))
-        ]));
+        ]);}));
   }
 }

@@ -29,52 +29,59 @@ class paymentsinforow extends StatelessWidget {
           Row(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 10.0, right: 60, bottom: 8),
-                child: Text(
-                  '$productName ',
-                  // ignore: prefer_const_constructors
-                  style: TextStyle(fontWeight: FontWeight.bold),
+              Expanded(
+                flex: 5,
+                child: Padding(
+                    padding: EdgeInsets.only(top: 12.0, right: 50,bottom: 10),
+                  child: Text(
+                    '$productName ',
+                    // ignore: prefer_const_constructors
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 10.0, right: 120, bottom: 8),
-                // ignore: prefer_const_constructors
+              Expanded(
+                flex: 5,
                 child: Text(
                   '$Quantity ',
                   // ignore: prefer_const_constructors
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 10.0, right: 190, bottom: 8),
-                // ignore: prefer_const_constructors
+              Expanded(
+                flex: 5,
                 child: Text(
                   '$ProductPrice',
                   // ignore: prefer_const_constructors
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 220, top: 10, bottom: 8),
+              Expanded(
+                flex: 5,
                 child: Text(
                   '$DateOfSale',
                   // ignore: prefer_const_constructors
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 200, top: 10, bottom: 8),
-                child: Text(
-                  '$Buyer',
-                  // ignore: prefer_const_constructors
-                  style: TextStyle(fontWeight: FontWeight.bold),
+              Expanded(
+                flex: 5,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 12.0, right: 100,bottom: 10),
+                  child: Text(
+                    '$Buyer',
+                    // ignore: prefer_const_constructors
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ],
           ),
           Expanded(
+            flex: 1,
+            
             child: Container(
+              
                 // width: screenWidth,
                 height: 70,
                 color: Colors.white),

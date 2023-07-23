@@ -1,37 +1,38 @@
+
 import 'package:flutter/material.dart';
-import 'package:zit_admin_screens/Mywidget/product__Info_Row.dart';
-import 'package:zit_admin_screens/api/apiRequests.dart';
-import 'package:zit_admin_screens/app_screens/admin_board.dart';
-import 'package:zit_admin_screens/app_screens/storeinfo.dart';
-import 'package:zit_admin_screens/app_screens/stores.dart';
-import 'package:zit_admin_screens/constant.dart';
+import 'package:zit_admin_screens/Mywidget/item_table.dart';
+import 'package:zit_admin_screens/Mywidget/order_info_Row.dart';
 
-class products extends StatefulWidget {
-  products({required this.id});
-  final int id;
-
+import '../constant.dart';
+import 'admin_board.dart';
+import 'storeinfo.dart';
+import 'stores.dart';
+class orderitemscreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return productsState(id);
+    return orderitemscreenState();
   }
 }
-
-class productsState extends State<products> {
-  productsState(this.id);
-  final int id;
-  DatabaseHelper databaseHelper = DatabaseHelper();
+  class orderitemscreenState extends State<orderitemscreen>{
+    
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    final isDesktop =MediaQuery.of(context).size.width>=1200;
+    final isDesktop =MediaQuery.of(context).size.width>=600;
     final ismobile =MediaQuery.of(context).size.width<=600;
+
+     double screenWidth = MediaQuery.of(context).size.width;
+     double screenHeight = MediaQuery.of(context).size.height;
+      
+      
+     
     return Scaffold(
-      appBar: AppBar(
+
+      backgroundColor: Colors.white,
+       appBar: AppBar(
           backgroundColor: Pcolor,
           title: const Center(
             child: Text(
-              'المنتجات',
+              'معلومات الطلب',
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -39,11 +40,12 @@ class productsState extends State<products> {
               ),
             ),
           )),
-      body: Row(
-        
-        children: [
-          isDesktop?
+      body: LayoutBuilder(
+        builder:(BuildContext context,BoxConstraints constraints){
+          return   Row(children: [
+            isDesktop?
           SizedBox(
+            
             width: 200,
             height: screenHeight,
             child: Container(
@@ -75,7 +77,7 @@ class productsState extends State<products> {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return board();
+                          return const board();
                         }));
                       },
                       child: const Text(
@@ -154,80 +156,22 @@ class productsState extends State<products> {
             ),
           ):Container(),
           Expanded(
-            flex: 5,
-            child: Container(
-              width: 200,
-              height: screenHeight,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Container(
-                    width: 1440,
-                    height: 70,
-                    color: Colors.white,
-                    child: Row(
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        isDesktop?
-                        Expanded(
-                          flex: 4,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top:15,right: 250),
-                            child: Text(
-                              'اسم المنتج',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ):Container(),
-                        Expanded(
-                          flex: 4,
-                          child: Padding(
-                            padding:  EdgeInsets.only(top:15,right:isDesktop? 60:20),
-                            child: Text(
-                              ' تصنيف المنتج ',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 4,
-                          child: Text(
-                            ' سعر المنتج',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      ],
+             flex: 5,
+              child: Container(
+                  width: screenWidth,
+                  height: screenHeight,
+                  color: Colors.white,
+                  child: ListView(children: [
+                    Container(
+                      width: screenWidth,
+                     height:400 ,
+                      color: Colors.white,
+                      child:
+                      orderitemWidget(Quantity: "2", price: '3300', productname: 'منتج 1',),
+                      
+                       
                     ),
-                  ),
-                  Expanded(
-                    child: StreamBuilder(
-                      stream: databaseHelper
-                          .getStoreProducts(id: id)
-                          .asStream(), // Replace with your own stream
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return const CircularProgressIndicator(); // Show a loading indicator while data is being fetched
-                        }
-                        return ListView.builder(
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (context, index) {
-                            return Productinforow(
-                                snapshot.data![index]['Image'],
-                                snapshot.data![index]['Name'],
-                                snapshot.data![index]['Category'],
-                                snapshot.data![index]['Price']);
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+                    
+                    ])
+                    ))]);
+          }));}}

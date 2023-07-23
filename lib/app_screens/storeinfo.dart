@@ -21,6 +21,8 @@ class storeinfoState extends State<storeinfo> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+     final isDesktop =MediaQuery.of(context).size.width>=1200;
+    final ismobile =MediaQuery.of(context).size.width<=600;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Pcolor,
@@ -36,6 +38,7 @@ class storeinfoState extends State<storeinfo> {
           )),
       body: Row(
         children: [
+          isDesktop?
           SizedBox(
             width: 200,
             height: screenHeight,
@@ -145,7 +148,7 @@ class storeinfoState extends State<storeinfo> {
                 ]),
               ]),
             ),
-          ),
+          ):Container(),
           Expanded(
             flex: 5,
             child: Container(
@@ -161,15 +164,16 @@ class storeinfoState extends State<storeinfo> {
                     child: Row(
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
+                        isDesktop?
                         const Padding(
                           padding: EdgeInsets.only(top: 15.0, right: 100),
                           child: Text(
                             'اسم المستخدم',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 15.0, right: 200),
+                        ):Container(),
+                         Padding(
+                          padding: EdgeInsets.only(top: 15.0, right:isDesktop? 120:25),
                           // ignore: prefer_const_constructors
                           child: Text(
                             'البريد الالكتروني ',
@@ -177,10 +181,18 @@ class storeinfoState extends State<storeinfo> {
                           ),
                         ),
                         const Padding(
-                          padding: EdgeInsets.only(top: 15.0, right: 200),
+                          padding: EdgeInsets.only(top: 15.0, right: 130),
                           // ignore: prefer_const_constructors
                           child: Text(
                             'اسم المتجر',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 15.0, right: 130),
+                          // ignore: prefer_const_constructors
+                          child: Text(
+                            ' حالة المتجر',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         )
@@ -204,7 +216,10 @@ class storeinfoState extends State<storeinfo> {
                                 snapshot.data![index]['id'],
                                 snapshot.data![index]['UserName'],
                                 snapshot.data![index]['Email'],
+                                snapshot.data![index]['Store'],
                                 snapshot.data![index]['Store']);
+                                
+                              
                           },
                         );
                       },
