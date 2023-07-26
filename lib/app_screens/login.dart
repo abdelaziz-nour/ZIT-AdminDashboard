@@ -11,14 +11,16 @@ class log_in extends StatefulWidget {
 }
 
 class loginState extends State<log_in> {
+  final LoginformKey = GlobalKey<FormState>();
+  final PasswordController = TextEditingController();
+  final usernameController = TextEditingController();
+  bool passToggle = true;
   DatabaseHelper databaseHelper = DatabaseHelper();
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    final LoginformKey = GlobalKey<FormState>();
-    final PasswordController = TextEditingController();
-    final usernameController = TextEditingController();
+
     return Scaffold(
         backgroundColor: Pcolor,
         body: Center(
@@ -54,30 +56,38 @@ class loginState extends State<log_in> {
                     Padding(
                       padding: EdgeInsets.all(screenHeight / 22),
                       child: TextFormField(
-                          controller: usernameController,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
-                                ),
-                                borderRadius: BorderRadius.circular(20)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color.fromARGB(255, 117, 170, 188),
-                                ),
-                                borderRadius: BorderRadius.circular(20)),
-                            prefixIcon: const Icon(
-                              Icons.person,
-                              color: Color.fromARGB(255, 117, 170, 188),
-                            ),
-                            hintText: "أدخل اسم المستخدم",
-                            // hintStyle: Color. fromARGB(255, 117, 170, 188),
-                          )),
+                        controller: usernameController,
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.black,
+                              ),
+                              borderRadius: BorderRadius.circular(20)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color.fromARGB(255, 117, 170, 188),
+                              ),
+                              borderRadius: BorderRadius.circular(20)),
+                          prefixIcon: const Icon(
+                            Icons.person,
+                            color: Color.fromARGB(255, 117, 170, 188),
+                          ),
+                          hintText: "أدخل اسم المستخدم",
+                          // hintStyle: Color. fromARGB(255, 117, 170, 188),
+                        ),
+                        validator: (value) {
+                          if (value == null) {
+                            return "هذا الحقل مطلوب";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.all(screenHeight / 22),
                       child: TextFormField(
-                        obscureText: true,
+                        obscureText: passToggle,
                         controller: PasswordController,
                         decoration: InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -88,11 +98,28 @@ class loginState extends State<log_in> {
                           focusedBorder: OutlineInputBorder(
                               borderSide: const BorderSide(color: Pcolor),
                               borderRadius: BorderRadius.circular(20)),
-                          prefixIcon: const Icon(Icons.remove_red_eye_outlined,
-                              color: Pcolor),
+                          prefixIcon: InkWell(
+                            onTap: () {
+                              setState(() {
+                                passToggle = !passToggle;
+                              });
+                            },
+                            child: Icon(
+                                passToggle
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Pcolor),
+                          ),
                           hintText: "أدخل كلمة السر ",
                           // hintStyle: Color. fromARGB(255, 117, 170, 188),
                         ),
+                        // validator: (value) {
+                        //   if (value == null) {
+                        //     return "الرجاء ادخال كلمة السر";
+                        //   } else {
+                        //     return null;
+                        //   }
+                        // },
                       ),
                     ),
                     ElevatedButton(

@@ -95,38 +95,72 @@ class DatabaseHelper {
         await http.get(myUrl, headers: {'Authorization': 'token $value'});
     var data = json.decode(response.body);
     success = data['success'];
+
     return data['data'];
   }
 
-  addStore(
-      {required int id, required String storename, required var image}) async {
+  addStore({
+    required String email,
+    required String storename,
+    required http.MultipartFile image,
+  }) async {
     final prefs = await SharedPreferences.getInstance();
     const key = 'token';
     final value = prefs.get(key) ?? 0;
+    print(image.filename);
     var request = http.MultipartRequest(
       'POST',
       Uri.parse("http://vzzoz.pythonanywhere.com/addstore"),
     );
-
     request.headers["Authorization"] = "token $value";
-    request.fields["ID"] = id.toString();
-    request.fields["Name"] = storename;
     request.files.add(image);
+    request.fields["Email"] = email;
+    request.fields["Name"] = storename;
+
     var response = await request.send();
-    printStreamedResponse(response);
+    return response;
   }
 
-  deleteStore({required int id}) async {
+  deleteStore({required String id}) async {
     final prefs = await SharedPreferences.getInstance();
     const key = 'token';
     final value = prefs.get(key) ?? 0;
 
     Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com/deletestore');
     var response = await http.post(myUrl,
-        headers: {'Authorization': 'token $value'},
-        body: {"Store": id.toString()});
+        headers: {'Authorization': 'token $value'}, body: {"Store": id});
     var data = json.decode(response.body);
     success = data['success'];
     return data;
+  }
+
+    Future<List> getOrders() async {
+    final prefs = await SharedPreferences.getInstance();
+    const key = 'token';
+    final value = prefs.get(key) ?? 0;
+
+    Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com/getorders');
+    var response =
+        await http.get(myUrl, headers: {'Authorization': 'token $value'});
+    var data = json.decode(response.body);
+    print(data['data']);
+    success = data['success'];
+
+    return data['data'];
+  }
+
+      Future<List> getProducts() async {
+    final prefs = await SharedPreferences.getInstance();
+    const key = 'token';
+    final value = prefs.get(key) ?? 0;
+
+    Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com/getproducts');
+    var response =
+        await http.get(myUrl, headers: {'Authorization': 'token $value'});
+    var data = json.decode(response.body);
+    print(data['data']);
+    success = data['success'];
+
+    return data['data'];
   }
 }
