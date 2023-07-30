@@ -7,7 +7,7 @@ import 'package:zit_admin_screens/app_screens/products.dart';
 import '../constant.dart';
 
 class Storecard extends StatelessWidget {
-  final int id;
+  final String id;
   final String image;
   final String StoreName;
   final String StoreManagerName;

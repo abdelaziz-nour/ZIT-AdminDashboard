@@ -6,25 +6,34 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
 class MyFunctions {
-  Future<http.MultipartFile> pickAndConvertToMultipartFile() async {
-    Uint8List? imageFile = await ImagePickerWeb.getImageAsBytes();
+Future<http.MultipartFile?> pickAndConvertToMultipartFile() async {
+  Uint8List? imageFile;
 
-    if (imageFile == null) {
-      throw ArgumentError('Image file is null');
-    }
-
-    final imageBytes = http.ByteStream.fromBytes(imageFile);
-    final imageLength = imageFile.length;
-    const imageFilename = 'Image.png';
-
-    return http.MultipartFile(
-      'Image',
-      imageBytes,
-      imageLength,
-      filename: imageFilename,
-      contentType: MediaType('image', 'png'),
-    );
+  try {
+    // Access the static method directly from the class
+    imageFile = await ImagePickerWeb.getImageAsBytes();
+  } catch (e) {
+    print('Error while picking image: $e');
+    return null;
   }
+
+  if (imageFile == null) {
+    return null;
+  }
+
+  final imageBytes = http.ByteStream.fromBytes(imageFile);
+  final imageLength = imageFile.length;
+  const imageFilename = 'Image.png';
+
+  print('Image size: ${imageLength} bytes');
+  return http.MultipartFile(
+    'Image',
+    imageBytes,
+    imageLength,
+    filename: imageFilename,
+    contentType: MediaType('image', 'png'),
+  );
+}
 
   noImageField(
     context,

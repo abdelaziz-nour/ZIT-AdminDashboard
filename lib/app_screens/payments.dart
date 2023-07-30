@@ -9,7 +9,7 @@ import '../Mywidget/payments_Info_Row.dart';
 
 class payments extends StatefulWidget {
   payments({required this.id});
-  final int id;
+  final String id;
   @override
   State<StatefulWidget> createState() {
     return paymentsState(id);
@@ -18,16 +18,18 @@ class payments extends StatefulWidget {
 
 class paymentsState extends State<payments> {
   paymentsState(this.id);
-  final int id;
+  final String id;
   DatabaseHelper databaseHelper = DatabaseHelper();
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
      final isDesktop =MediaQuery.of(context).size.width>=1200;
     final ismobile =MediaQuery.of(context).size.width<=600;
     return Scaffold(
       backgroundColor: Colors.white,
+
         appBar: AppBar(
             backgroundColor: Pcolor,
             title: const Center(
@@ -41,117 +43,122 @@ class paymentsState extends State<payments> {
               ),
             )),
         body: Row(children: [
-          isDesktop?
-          SizedBox(
-            width: 200,
-            height: screenHeight,
-            child: Container(
-              width: screenWidth / 3,
-              height: screenHeight,
-              color: Pcolor,
-              child: Column(children: [
-                const Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text(
-                    'أهلاً بك',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontStyle: FontStyle.italic,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.home,
-                        color: Colors.white,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const board();
-                        }));
-                      },
-                      child: const Text(
-                        'الرئيسيه',
-                        style: TextStyle(
-                          color: Colors.white,
+
+          isDesktop
+              ? SizedBox(
+                  width: 200,
+                  height: screenHeight,
+                  child: Container(
+                    width: screenWidth / 3,
+                    height: screenHeight,
+                    color: Pcolor,
+                    child: Column(children: [
+                      const Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Text(
+                          'أهلاً بك',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontStyle: FontStyle.italic,
+                            color: Colors.white,
+                          ),
+
                         ),
                       ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.store,
-                        color: Colors.white,
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.home,
+                              color: Colors.white,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const board();
+                              }));
+                            },
+                            child: const Text(
+                              'الرئيسيه',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const store();
-                        }));
-                      },
-                      child: const Text(
-                        'المتاجر',
-                        style: TextStyle(
-                          color: Colors.white,
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.store,
+                              color: Colors.white,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const store();
+                              }));
+                            },
+                            child: const Text(
+                              'المتاجر',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(children: [
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
-                Row(children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return storeinfo();
+                            }));
+                          },
+                          child: const Text(
+                            'المستخدمين',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      ]),
+                      Row(children: const [
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.logout_sharp,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          'تسجيل الخروج',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )
+                      ]),
+                    ]),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return storeinfo();
-                      }));
-                    },
-                    child: const Text(
-                      'المستخدمين',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
-                ]),
-                Row(children: const [
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.logout_sharp,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Text(
-                    'تسجيل الخروج',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  )
-                ]),
-              ]),
-            ),
-          ):Container(),
+
+                )
+              : Container(),
+
           Expanded(
               flex: 5,
               child: Container(
@@ -219,6 +226,8 @@ class paymentsState extends State<payments> {
                             return const CircularProgressIndicator(); // Show a loading indicator while data is being fetched
                           }
                           return ListView.builder(
+                            shrinkWrap: true,
+                      primary: false,
                             itemCount: snapshot.data!.length - 1,
                             itemBuilder: (context, index) {
                               var order = snapshot.data![index];
@@ -227,6 +236,7 @@ class paymentsState extends State<payments> {
                                 children: [
                                   ListView.builder(
                                     shrinkWrap: true,
+                      primary: false,
                                     physics: const ClampingScrollPhysics(),
                                     itemCount: order['OrderItems'].length,
                                     itemBuilder: (context, itemIndex) {

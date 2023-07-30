@@ -15,12 +15,12 @@ class loginState extends State<log_in> {
     final PasswordController = TextEditingController();
     final usernameController = TextEditingController();
     bool passToggle=true;
+
   DatabaseHelper databaseHelper = DatabaseHelper();
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    
     return Scaffold(
         backgroundColor: Pcolor,
         body: Center(
@@ -56,6 +56,7 @@ class loginState extends State<log_in> {
                     Padding(
                       padding: EdgeInsets.all(screenHeight / 22),
                       child: TextFormField(
+
                           controller: usernameController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -84,6 +85,7 @@ class loginState extends State<log_in> {
                           }
                         },
                           ),
+
                     ),
                     Padding(
                       padding: EdgeInsets.all(screenHeight / 22),
@@ -112,6 +114,7 @@ class loginState extends State<log_in> {
                           hintText: "أدخل كلمة السر ",
                           // hintStyle: Color. fromARGB(255, 117, 170, 188),
                         ),
+
                         validator: (value) {
                           if(value!=null&&value.length<7){
                             return "كلمة السر يجب ان تتكون من سبعه حروف وارقام";
@@ -120,6 +123,7 @@ class loginState extends State<log_in> {
                             return null;
                           }
                         },
+
                       ),
                     ),
                     ElevatedButton(
