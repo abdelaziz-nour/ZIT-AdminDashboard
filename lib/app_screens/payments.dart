@@ -24,10 +24,12 @@ class paymentsState extends State<payments> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    final isDesktop = MediaQuery.of(context).size.width >= 1200;
-    final ismobile = MediaQuery.of(context).size.width <= 600;
+
+     final isDesktop =MediaQuery.of(context).size.width>=1200;
+    final ismobile =MediaQuery.of(context).size.width<=600;
     return Scaffold(
-        backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
+
         appBar: AppBar(
             backgroundColor: Pcolor,
             title: const Center(
@@ -41,6 +43,7 @@ class paymentsState extends State<payments> {
               ),
             )),
         body: Row(children: [
+
           isDesktop
               ? SizedBox(
                   width: 200,
@@ -59,6 +62,7 @@ class paymentsState extends State<payments> {
                             fontStyle: FontStyle.italic,
                             color: Colors.white,
                           ),
+
                         ),
                       ),
                       Row(
@@ -151,8 +155,10 @@ class paymentsState extends State<payments> {
                       ]),
                     ]),
                   ),
+
                 )
               : Container(),
+
           Expanded(
               flex: 5,
               child: Container(

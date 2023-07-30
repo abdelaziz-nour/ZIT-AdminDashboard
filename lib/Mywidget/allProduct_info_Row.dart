@@ -8,15 +8,25 @@ class allproductinforow extends StatelessWidget {
   final String productname;
   final String productprice;
   final String productStore;
-  const allproductinforow(this.productnum, this.productimage, this.productname,
-      this.productprice, this.productStore);
+
+  const allproductinforow(
+    this.productnum, 
+    this.productimage, 
+    this.productname, 
+    this.productprice,
+     this.productStore
+    
+  );
+
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    final isDesktop = MediaQuery.of(context).size.width >= 600;
-    final ismobile = MediaQuery.of(context).size.width <= 600;
+
+      final isDesktop =MediaQuery.of(context).size.width>=600;
+    final ismobile =MediaQuery.of(context).size.width<=600;
+
 
     return Container(
       // width: screenWidth,
@@ -27,6 +37,7 @@ class allproductinforow extends StatelessWidget {
           Row(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
+
               isDesktop
                   ? Expanded(
                       flex: 5,
@@ -58,6 +69,7 @@ class allproductinforow extends StatelessWidget {
                         ),
                       ))
                   : Container(),
+
               Expanded(
                 flex: 5,
                 child: Padding(
@@ -83,7 +95,9 @@ class allproductinforow extends StatelessWidget {
               Expanded(
                 flex: 5,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 12.0, right: 100, bottom: 10),
+
+                  padding: EdgeInsets.only(top: 12.0, right: 100,bottom: 10),
+
                   child: Text(
                     '$productStore',
                     // ignore: prefer_const_constructors
@@ -94,8 +108,10 @@ class allproductinforow extends StatelessWidget {
             ],
           ),
           Expanded(
-            flex: 1,
+ 
+            
             child: Container(
+              
 
                 // width: screenWidth,
                 height: 70,

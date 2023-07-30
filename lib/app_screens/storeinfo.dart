@@ -24,8 +24,8 @@ class storeinfoState extends State<storeinfo> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    final isDesktop = MediaQuery.of(context).size.width >= 1200;
-    final ismobile = MediaQuery.of(context).size.width <= 600;
+     final isDesktop =MediaQuery.of(context).size.width>=1200;
+    final ismobile =MediaQuery.of(context).size.width<=600;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Pcolor,
@@ -42,51 +42,50 @@ class storeinfoState extends State<storeinfo> {
       ),
       body: Row(
         children: [
-          isDesktop
-              ? SizedBox(
-                  width: 200,
-                  height: screenHeight,
-                  child: Container(
-                    width: screenWidth / 3,
-                    height: screenHeight,
-                    color: Pcolor,
-                    child: Column(children: [
-                      const Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Text(
-                          'أهلاً بك',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontStyle: FontStyle.italic,
-                            color: Colors.white,
-                          ),
+          isDesktop?
+          SizedBox(
+            width: 200,
+            height: screenHeight,
+            child: Container(
+              width: screenWidth / 3,
+              height: screenHeight,
+              color: Pcolor,
+              child: Column(children: [
+                const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text(
+                    'أهلاً بك',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.home,
+                        color: Colors.white,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return board();
+                        }));
+                      },
+                      child: Text(
+                        'الرئيسيه',
+                        style: TextStyle(
+                          color: Colors.white,
+
                         ),
                       ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.home,
-                              color: Colors.white,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return board();
-                              }));
-                            },
-                            child: Text(
-                              'الرئيسيه',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
+                   
                       Row(
                         children: [
                           Padding(
@@ -158,6 +157,8 @@ class storeinfoState extends State<storeinfo> {
                   ),
                 )
               : Container(),
+
+                
           Expanded(
             flex: 5,
             child: Container(
@@ -172,6 +173,7 @@ class storeinfoState extends State<storeinfo> {
                     color: Colors.white,
                     child: Row(
                       children: [
+
                         isDesktop
                             ? const Padding(
                                 padding: EdgeInsets.only(top: 15.0, right: 100),
@@ -185,8 +187,27 @@ class storeinfoState extends State<storeinfo> {
                           padding: EdgeInsets.only(
                               top: 15.0, right: isDesktop ? 120 : 25),
                           // ignore: prefer_const_constructors
+
+                        isDesktop?
+                        const Padding(
+                          padding: EdgeInsets.only(top: 15.0, right: 100),
+
                           child: Text(
                             'البريد الالكتروني ',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 15.0, right: 130),
+
+                        ):Container(),
+                         Padding(
+                          padding: EdgeInsets.only(top: 15.0, right:isDesktop? 120:25),
+
+                          // ignore: prefer_const_constructors
+                          child: Text(
+                            'اسم المتجر',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -194,7 +215,7 @@ class storeinfoState extends State<storeinfo> {
                           padding: EdgeInsets.only(top: 15.0, right: 130),
                           // ignore: prefer_const_constructors
                           child: Text(
-                            'اسم المتجر',
+                            ' حالة المتجر',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -229,6 +250,7 @@ class storeinfoState extends State<storeinfo> {
                           itemCount: usersData.length,
                           itemBuilder: (context, index) {
                             return storeinforow(
+
                               usersData[index]['id'].toString(),
                               usersData[index]['UserName'],
                               usersData[index]['Email'],
@@ -238,6 +260,15 @@ class storeinfoState extends State<storeinfo> {
 
 
                             );
+
+                                snapshot.data![index]['id'],
+                                snapshot.data![index]['UserName'],
+                                snapshot.data![index]['Email'],
+                                snapshot.data![index]['Store'],
+                                snapshot.data![index]['Store']);
+                                
+                              
+
                           },
                         );
                       },

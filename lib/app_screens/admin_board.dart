@@ -22,8 +22,11 @@ class boardState extends State<board> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    final isDesktop = MediaQuery.of(context).size.width >= 800;
-    final ismobile = MediaQuery.of(context).size.width <= 600;
+     final isDesktop =MediaQuery.of(context).size.width>=800;
+    final ismobile =MediaQuery.of(context).size.width<=600;
+    
+    
+
 
     return Scaffold(
         appBar: AppBar(
@@ -38,79 +41,203 @@ class boardState extends State<board> {
                 ),
               ),
             )),
-        body: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-          return Row(children: [
-            isDesktop
-                ? SizedBox(
-                    width: 200,
-                    height: screenHeight,
-                    child: Container(
-                      width: screenWidth / 3,
-                      height: screenHeight,
-                      color: Pcolor,
-                      child: Column(children: [
-                        const Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: Text(
-                            'أهلاً بك',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontStyle: FontStyle.italic,
-                              color: Colors.white,
-                            ),
-                          ),
+
+        body:LayoutBuilder(
+        builder:(BuildContext context,BoxConstraints constraints){
+          return   Row(children: [
+            isDesktop?
+          SizedBox(
+            
+            width: 200,
+            height: screenHeight,
+            child: Container(
+              width: screenWidth / 3,
+              height: screenHeight,
+              color: Pcolor,
+              child: Column(children: [
+                const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text(
+                    'أهلاً بك',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.home,
+                        color: Colors.white,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const board();
+                        }));
+                      },
+                      child: const Text(
+                        'الرئيسيه',
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
-                        Row(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.home,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.store,
+                        color: Colors.white,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const store();
+                        }));
+                      },
+                      child: const Text(
+                        'المتاجر',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Row(children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return storeinfo();
+                      }));
+                    },
+                    child: const Text(
+                      'المستخدمين',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+                ]),
+                Row(children: const [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.logout_sharp,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'تسجيل الخروج',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  )
+                ]),
+              ]),
+            ),
+          ):Container(),
+          Expanded(
+               flex:5,
+              child: Container(
+                  width: 700,
+                  height: 700,
+                  color: Colors.white,
+                  child: Column(children: [
+                    Row(children: [
+                      Padding(
+                        padding: EdgeInsets.only(right:screenWidth/4, top: screenHeight/4),
+                        child: Container(
+                          width: 141,
+                          height: 141,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.storefront_outlined,
                                 color: Colors.white,
+                                size: 20,
                               ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return const board();
-                                }));
-                              },
-                              child: const Text(
-                                'الرئيسيه',
-                                style: TextStyle(
-                                  color: Colors.white,
+                              Padding(
+                                padding: EdgeInsets.only(right: 10,top:10),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return const store();
+                                    }));
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "المتاجر",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize:17),
+                                    ),
+                                  ),
+
                                 ),
                               ),
                             )
                           ],
                         ),
-                        Row(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.store,
+
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right:screenWidth/7, top: screenHeight/4),
+                        child: Container(
+                          width: 141,
+                          height: 141,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.person,
                                 color: Colors.white,
+                                size: 20,
                               ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return const store();
-                                }));
-                              },
-                              child: const Text(
-                                'المتاجر',
-                                style: TextStyle(
-                                  color: Colors.white,
+                              Padding(
+                                 padding: EdgeInsets.only(top:10),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return storeinfo();
+                                    }));
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "المستخدمين",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 17),
+                                    ),
+                                  ),
+
                                 ),
                               ),
                             )
                           ],
                         ),
+
                         Row(children: [
                           const Padding(
                             padding: EdgeInsets.all(8.0),
@@ -270,6 +397,7 @@ class boardState extends State<board> {
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 18),
                                     ),
+
                                   ),
                                 ),
                               ],
@@ -280,6 +408,7 @@ class boardState extends State<board> {
                                     const Color.fromARGB(255, 236, 180, 160)),
                           ),
                         ),
+
                         Padding(
                           padding: EdgeInsets.only(
                               right: screenWidth / 7, top: screenHeight / 6),
@@ -308,6 +437,7 @@ class boardState extends State<board> {
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 18),
                                     ),
+
                                   ),
                                 ),
                               ],
@@ -317,9 +447,11 @@ class boardState extends State<board> {
                                 color: Pcolor),
                           ),
                         ),
+
                       ])
                     ])))
           ]);
         }));
+
   }
 }

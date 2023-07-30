@@ -44,6 +44,7 @@ class storeState extends State<store> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
     // Use StreamBuilder to listen to the stream and update the UI.
     return StreamBuilder<List<dynamic>>(
       stream: _storeStreamController.stream,
@@ -63,6 +64,32 @@ class storeState extends State<store> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
+
+    
+
+   
+      body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+        return Column(children: [
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  left: screenWidth / 1.5,
+                  top: screenHeight / 25,
+                  right: screenWidth / 15),
+              child: TextField(
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.black,
+                      ),
+                      borderRadius: BorderRadius.circular(20)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Pcolor),
+                      borderRadius: BorderRadius.circular(20)),
+                  prefixIcon: const Icon(Icons.search, color: Pcolor),
+
                 ),
               ),
             ),
