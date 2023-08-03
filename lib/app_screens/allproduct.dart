@@ -236,16 +236,16 @@ class allProductscreenState extends State<allProductscreen> {
                                 return allproductinforow(
                                   snapshot.data![itemIndex]['id'],
                                   snapshot.data![itemIndex]['Image'],
-                                  snapshot.data![itemIndex]['Store'],
-                                  snapshot.data![itemIndex]['Price'].toString(),
                                   snapshot.data![itemIndex]['Name'],
+                                  snapshot.data![itemIndex]['Price'].toString(),
+                                  snapshot.data![itemIndex]['Store'],
                                 );
                               },
                             );
                           }
                         },
                       ),
-                      // allproductinforow("1", "images/im.jpj.jpg", "منتج1", "6000", "عزيز")
+                      
                     ])))
           ]);
         }));

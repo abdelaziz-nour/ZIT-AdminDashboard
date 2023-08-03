@@ -76,14 +76,14 @@ class loginState extends State<log_in> {
                             hintText: "أدخل اسم المستخدم",
                             // hintStyle: Color. fromARGB(255, 117, 170, 188),
                           ),
-                            validator: (value) {
-                          if(value!=null){
-                            return "هذا الحقل مطلوب";
-                          }
-                          else{
-                            return null;
-                          }
-                        },
+                        //     validator: (value) {
+                        //   if(value!=null){
+                        //     return "هذا الحقل مطلوب";
+                        //   }
+                        //   else{
+                        //     return null;
+                        //   }
+                        // },
                           ),
 
                     ),
@@ -115,14 +115,14 @@ class loginState extends State<log_in> {
                           // hintStyle: Color. fromARGB(255, 117, 170, 188),
                         ),
 
-                        validator: (value) {
-                          if(value!=null&&value.length<7){
-                            return "كلمة السر يجب ان تتكون من سبعه حروف وارقام";
-                          }
-                          else{
-                            return null;
-                          }
-                        },
+                        // validator: (value) {
+                        //   if(value!=null&&value.length<7){
+                        //     return "كلمة السر يجب ان تتكون من سبعه حروف وارقام";
+                        //   }
+                        //   else{
+                        //     return null;
+                        //   }
+                        // },
 
                       ),
                     ),
@@ -145,7 +145,7 @@ class loginState extends State<log_in> {
                         ),
                       ),
                       onPressed: () async {
-                        if (LoginformKey.currentState!.validate()) {
+                       // if (LoginformKey.currentState!.validate()) {
                           await databaseHelper.loginData(
                               username: usernameController.text,
                               password: PasswordController.text);
@@ -158,7 +158,7 @@ class loginState extends State<log_in> {
                             print(databaseHelper.success);
                           }
                         }
-                      },
+                     // },
                     ),
                     const Center(
                       child: Padding(

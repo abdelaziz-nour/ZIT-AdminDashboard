@@ -41,11 +41,12 @@ class productsState extends State<products> {
               ),
             ),
           )),
-      body: Row(
-        
-        children: [
-          isDesktop?
+      body:LayoutBuilder(
+        builder:(BuildContext context,BoxConstraints constraints){
+          return   Row(children: [
+            isDesktop?
           SizedBox(
+            
             width: 200,
             height: screenHeight,
             child: Container(
@@ -77,109 +78,84 @@ class productsState extends State<products> {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return board();
+                          return const board();
                         }));
                       },
                       child: const Text(
                         'الرئيسيه',
                         style: TextStyle(
                           color: Colors.white,
-
                         ),
                       ),
-                      Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.home,
-                              color: Colors.white,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return board();
-                              }));
-                            },
-                            child: const Text(
-                              'الرئيسيه',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          )
-                        ],
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.store,
+                        color: Colors.white,
                       ),
-                      Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.store,
-                              color: Colors.white,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return const store();
-                              }));
-                            },
-                            child: const Text(
-                              'المتاجر',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          )
-                        ],
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const store();
+                        }));
+                      },
+                      child: const Text(
+                        'المتاجر',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
-                      Row(children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.person,
-                            color: Colors.white,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return storeinfo();
-                            }));
-                          },
-                          child: const Text(
-                            'المستخدمين',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        )
-                      ]),
-                      Row(children: const [
-                        Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.logout_sharp,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          'تسجيل الخروج',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )
-                      ]),
-                    ]),
+                    )
+                  ],
+                ),
+                Row(children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
                   ),
-
-                )
-              : Container(),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return storeinfo();
+                      }));
+                    },
+                    child: const Text(
+                      'المستخدمين',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  )
+             ]),
+                 Row(children: const [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.logout_sharp,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'تسجيل الخروج',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  )
+                ]),
+              ]),
+            ),
+          ):Container(),
                 
           Expanded(
             flex: 5,
@@ -196,7 +172,7 @@ class productsState extends State<products> {
                     child: Row(
                       // ignore: prefer_const_literals_to_create_immutables
                       children: [
-=
+
                         isDesktop?
                         Expanded(
                           flex: 4,
@@ -259,7 +235,7 @@ class productsState extends State<products> {
             ),
           ),
         ],
-      ),
-    );
+      );
+  }) );
   }
 }

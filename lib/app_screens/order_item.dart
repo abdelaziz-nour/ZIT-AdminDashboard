@@ -163,8 +163,7 @@ class orderitemscreenState extends State<orderitemscreen> {
                     width: screenWidth,
                     height: screenHeight,
                     color: Colors.white,
-                    child:
-                         orderitemWidget(
+                    child: orderitemWidget(
                              OrderItems: OrderItems,)
 
                     //     ListView.builder(
@@ -175,12 +174,14 @@ class orderitemscreenState extends State<orderitemscreen> {
                     //     return orderitemWidget(
                     //       Quantity: OrderItems[index]['Quantity'].toString(),
                     //       price: OrderItems[index]['Price'].toString(),
-                    //       productname: OrderItems[index]['ProductName'],
+                    //       productname: OrderItems[index]['ProductName'].toString(),
+                    //       OrderItems: [index], 
                     //     );
                     //   },
                     // )
-                    ))
-          ]);
+                   // )
+                 //   )
+         ) )]);
         }));
   }
 }

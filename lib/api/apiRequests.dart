@@ -45,6 +45,7 @@ class DatabaseHelper {
   }
 
   Future<List> getStores() async {
+
     final prefs = await SharedPreferences.getInstance();
     const key = 'token';
     final value = prefs.get(key) ?? 0;
@@ -56,6 +57,7 @@ class DatabaseHelper {
     );
     var data = json.decode(response.body);
     success = data['success'];
+    //print(data);
     return data['data'];
   }
 

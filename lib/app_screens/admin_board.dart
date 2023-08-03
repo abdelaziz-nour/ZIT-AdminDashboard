@@ -138,8 +138,8 @@ class boardState extends State<board> {
                       ),
                     ),
                   )
-                ]),
-                Row(children: const [
+             ]),
+                 Row(children: const [
                   Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Icon(
@@ -157,129 +157,129 @@ class boardState extends State<board> {
               ]),
             ),
           ):Container(),
-          Expanded(
-               flex:5,
-              child: Container(
-                  width: 700,
-                  height: 700,
-                  color: Colors.white,
-                  child: Column(children: [
-                    Row(children: [
-                      Padding(
-                        padding: EdgeInsets.only(right:screenWidth/4, top: screenHeight/4),
-                        child: Container(
-                          width: 141,
-                          height: 141,
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.storefront_outlined,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: 10,top:10),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return const store();
-                                    }));
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "المتاجر",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize:17),
-                                    ),
-                                  ),
+          // Expanded(
+          //      flex:5,
+          //     child: Container(
+          //         width: 700,
+          //         height: 700,
+          //         color: Colors.white,
+          //         child: Column(children: [
+          //           Row(children: [
+          //             Padding(
+          //               padding: EdgeInsets.only(right:screenWidth/4, top: screenHeight/4),
+          //               child: Container(
+          //                 width: 141,
+          //                 height: 141,
+          //                 child: Row(
+          //                   children: [
+          //                     Icon(
+          //                       Icons.storefront_outlined,
+          //                       color: Colors.white,
+          //                       size: 20,
+          //                     ),
+          //                     Padding(
+          //                       padding: EdgeInsets.only(right: 10,top:10),
+          //                       child: GestureDetector(
+          //                         onTap: () {
+          //                           Navigator.push(context,
+          //                               MaterialPageRoute(builder: (context) {
+          //                             return const store();
+          //                           }));
+          //                         },
+          //                         child: Padding(
+          //                           padding: const EdgeInsets.all(8.0),
+          //                           child: Text(
+          //                             "المتاجر",
+          //                             style: TextStyle(
+          //                                 color: Colors.white, fontSize:17),
+          //                           ),
+          //                         ),
 
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
+          //                       ),
+          //                     ),
+          //            ] )
+          //          )) ]),
+          //  ] ),)
 
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(right:screenWidth/7, top: screenHeight/4),
-                        child: Container(
-                          width: 141,
-                          height: 141,
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.person,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                              Padding(
-                                 padding: EdgeInsets.only(top:10),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return storeinfo();
-                                    }));
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "المستخدمين",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 17),
-                                    ),
-                                  ),
+          //             ),
+          //             Padding(
+          //               padding: EdgeInsets.only(right:screenWidth/7, top: screenHeight/4),
+          //               child: Container(
+          //                 width: 141,
+          //                 height: 141,
+          //                 child: Row(
+          //                   children: [
+          //                     Icon(
+          //                       Icons.person,
+          //                       color: Colors.white,
+          //                       size: 20,
+          //                     ),
+          //                     Padding(
+          //                        padding: EdgeInsets.only(top:10),
+          //                       child: GestureDetector(
+          //                         onTap: () {
+          //                           Navigator.push(context,
+          //                               MaterialPageRoute(builder: (context) {
+          //                             return storeinfo();
+          //                           }));
+          //                         },
+          //                         child: Padding(
+          //                           padding: const EdgeInsets.all(8.0),
+          //                           child: Text(
+          //                             "المستخدمين",
+          //                             style: TextStyle(
+          //                                 color: Colors.white, fontSize: 17),
+          //                           ),
+          //                         ),
 
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
+          //                       ),
+          //                     ),
+          //  ] ))
+          //  ) ],
+                        
 
-                        Row(children: [
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.person,
-                              color: Colors.white,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return storeinfo();
-                              }));
-                            },
-                            child: const Text(
-                              'المستخدمين',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          )
-                        ]),
-                        Row(children: const [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.logout_sharp,
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            'تسجيل الخروج',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          )
-                        ]),
-                      ]),
-                    ),
-                  )
-                : Container(),
+          //               Row(children: [
+          //                 const Padding(
+          //                   padding: EdgeInsets.all(8.0),
+          //                   child: Icon(
+          //                     Icons.person,
+          //                     color: Colors.white,
+          //                   ),
+          //                 ),
+          //                 GestureDetector(
+          //                   onTap: () {
+          //                     Navigator.push(context,
+          //                         MaterialPageRoute(builder: (context) {
+          //                       return storeinfo();
+          //                     }));
+          //                   },
+          //                   child: const Text(
+          //                     'المستخدمين',
+          //                     style: TextStyle(
+          //                       color: Colors.white,
+          //                     ),
+          //                   ),
+          //                 )
+          //               ]),
+          //               Row(children: const [
+          //                 Padding(
+          //                   padding: EdgeInsets.all(8.0),
+          //                   child: Icon(
+          //                     Icons.logout_sharp,
+          //                     color: Colors.white,
+          //                   ),
+          //                 ),
+          //                 Text(
+          //                   'تسجيل الخروج',
+          //                   style: TextStyle(
+          //                     color: Colors.white,
+          //                   ),
+          //                 )
+          //               ]),
+          //             ]),
+          //           ),
+          //         )
+          //       : Container(),
             Expanded(
                 flex: 5,
                 child: Container(

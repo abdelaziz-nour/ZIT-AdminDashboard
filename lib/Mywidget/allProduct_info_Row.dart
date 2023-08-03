@@ -96,7 +96,7 @@ class allproductinforow extends StatelessWidget {
                 flex: 5,
                 child: Padding(
 
-                  padding: EdgeInsets.only(top: 12.0, right: 100,bottom: 10),
+                  padding: const EdgeInsets.only(top: 12.0, right: 100,bottom: 10),
 
                   child: Text(
                     '$productStore',
@@ -108,13 +108,9 @@ class allproductinforow extends StatelessWidget {
             ],
           ),
           Expanded(
- 
-            
-            child: Container(
-              
-
-                // width: screenWidth,
-                height: 70,
+            flex: 1,
+         child: Container(
+                  height: 70,
                 color: Colors.white),
           )
         ],

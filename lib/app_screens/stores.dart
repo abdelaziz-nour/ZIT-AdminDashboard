@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:zit_admin_screens/Mywidget/store_Card.dart';
 import 'package:zit_admin_screens/api/apiRequests.dart';
 import 'package:zit_admin_screens/constant.dart';
-
+import 'package:http/http.dart' as http;
 import '../Mywidget/add_storeForm.dart';
 
 class store extends StatefulWidget {
@@ -17,9 +19,24 @@ class store extends StatefulWidget {
 }
 
 class storeState extends State<store> {
+  //  List<dynamic> storesearch =[];
+   
+//  var listSearch=[];
+
+//  Future getStores() async{
+//   Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com/getstores');
+//   var response =await http.get(myUrl);
+//   var responsebody=jsonDecode(response.body);
+//   for(int i=0;i<responsebody.length;i++){
+//    listSearch.add(responsebody[i]);
+//   }
+//   print(listSearch);
+//  }
+
   DatabaseHelper databaseHelper = DatabaseHelper();
   StreamController<List<dynamic>> _storeStreamController = StreamController();
-  List<dynamic> _storesData = [];
+ // List<dynamic> _storesData = [];
+  
 
   @override
   void initState() {
@@ -39,6 +56,11 @@ class storeState extends State<store> {
   Future<List<dynamic>> getStoresData() async {
     return await databaseHelper.getStores();
   }
+ Future<List<dynamic>> getStoresdata() async {
+ // for (in)
+    return await databaseHelper.getStores();
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +75,7 @@ class storeState extends State<store> {
           return CircularProgressIndicator();
         } else {
           List<dynamic> storesData = snapshot.data ?? [];
+          print(storesData);
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Pcolor,
@@ -63,37 +86,8 @@ class storeState extends State<store> {
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
-                  ),
-
-    
-
-   
-      body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-        return Column(children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: Padding(
-              padding: EdgeInsets.only(
-                  left: screenWidth / 1.5,
-                  top: screenHeight / 25,
-                  right: screenWidth / 15),
-              child: TextField(
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Colors.black,
-                      ),
-                      borderRadius: BorderRadius.circular(20)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Pcolor),
-                      borderRadius: BorderRadius.circular(20)),
-                  prefixIcon: const Icon(Icons.search, color: Pcolor),
-
-                ),
-              ),
-            ),
-            body: LayoutBuilder(
+                  )))),
+          body: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 return Column(
                   children: [
@@ -117,7 +111,10 @@ class storeState extends State<store> {
                               borderSide: BorderSide(color: Pcolor),
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            prefixIcon: const Icon(Icons.search, color: Pcolor),
+                            prefixIcon: IconButton(icon:Icon(Icons.search, color: Pcolor),
+                            onPressed: () {
+                              showSearch(context: context, delegate: DataSearch(storesData));
+                            },),
                           ),
                         ),
                       ),
@@ -165,8 +162,42 @@ class storeState extends State<store> {
               },
             ),
           );
-        }
-      },
-    );
+        }});
+        }}
+
+class DataSearch extends SearchDelegate<String>{
+   List<dynamic> list;
+   DataSearch(this.list);
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    // appBar
+  return [IconButton(onPressed:() {},
+      icon:Icon(Icons.clear),)
+  ];}
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    // icon
+    return IconButton(onPressed: (){
+      close(context, "null");
+    } , icon: Icon(Icons.arrow_back),);
   }
-}
+   @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    throw UnimplementedError();
+  }
+
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // TODO: search 
+    return ListView.builder(itemCount: list.length,
+    itemBuilder: (context, i) {
+    return Text(list[i]["Name"]);
+    },);
+  }
+  
+ 
+
+}      
