@@ -19,31 +19,22 @@ class store extends StatefulWidget {
 }
 
 class storeState extends State<store> {
-  //  List<dynamic> storesearch =[];
-   
-//  var listSearch=[];
-
-//  Future getStores() async{
-//   Uri myUrl = Uri.parse('http://vzzoz.pythonanywhere.com/getstores');
-//   var response =await http.get(myUrl);
-//   var responsebody=jsonDecode(response.body);
-//   for(int i=0;i<responsebody.length;i++){
-//    listSearch.add(responsebody[i]);
-//   }
-//   print(listSearch);
-//  }
-
+  String searchQuery = '';
+  List<dynamic> stores = [];
+  List<dynamic> filteredStores = [];
   DatabaseHelper databaseHelper = DatabaseHelper();
   StreamController<List<dynamic>> _storeStreamController = StreamController();
- // List<dynamic> _storesData = [];
+ 
   
 
   @override
   void initState() {
+     fetchData();
     super.initState();
     // Fetch the stores data and update the StreamController
     getStoresData().then((data) {
       _storeStreamController.add(data);
+      
     });
   }
 
@@ -56,13 +47,16 @@ class storeState extends State<store> {
   Future<List<dynamic>> getStoresData() async {
     return await databaseHelper.getStores();
   }
- Future<List<dynamic>> getStoresdata() async {
- // for (in)
-    return await databaseHelper.getStores();
-  }
-  
 
-  @override
+
+  void fetchData() async {
+    List<dynamic> fetchedStores = await databaseHelper.getStores();
+    setState(() {
+      stores = fetchedStores;
+      filteredStores = fetchedStores;
+    });
+  }
+   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
@@ -100,6 +94,12 @@ class storeState extends State<store> {
                           right: screenWidth / 15,
                         ),
                         child: TextField(
+                          onChanged: (value) {
+                            setState(() {
+                              searchQuery = value;
+                              filterStores();
+                            });
+                          },
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderSide: const BorderSide(
@@ -113,7 +113,7 @@ class storeState extends State<store> {
                             ),
                             prefixIcon: IconButton(icon:Icon(Icons.search, color: Pcolor),
                             onPressed: () {
-                              showSearch(context: context, delegate: DataSearch(storesData));
+                             ///////////////////////////////////
                             },),
                           ),
                         ),
@@ -142,17 +142,21 @@ class storeState extends State<store> {
                       ),
                     ),
                     Expanded(
+                      flex: 2,
                       child: ListView.builder(
                         shrinkWrap: true,
                         primary: false,
                         itemCount: storesData.length,
                         itemBuilder: (context, index) {
                           // Use Storecard widget here
-                          return Storecard(
-                            'http://vzzoz.pythonanywhere.com${storesData[index]['Image']}',
-                            storesData[index]['Name'],
-                            storesData[index]['Owner'],
-                            id: storesData[index]['id'],
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Storecard(
+                              'http://vzzoz.pythonanywhere.com${storesData[index]['Image']}',
+                              storesData[index]['Name'],
+                              storesData[index]['Owner'],
+                              id: storesData[index]['id'],
+                            ),
                           );
                         },
                       ),
@@ -163,41 +167,23 @@ class storeState extends State<store> {
             ),
           );
         }});
-        }}
+        }
 
-class DataSearch extends SearchDelegate<String>{
-   List<dynamic> list;
-   DataSearch(this.list);
-  @override
-  List<Widget>? buildActions(BuildContext context) {
-    // appBar
-  return [IconButton(onPressed:() {},
-      icon:Icon(Icons.clear),)
-  ];}
-
-  @override
-  Widget? buildLeading(BuildContext context) {
-    // icon
-    return IconButton(onPressed: (){
-      close(context, "null");
-    } , icon: Icon(Icons.arrow_back),);
+         void filterStores() {
+    if (searchQuery.isEmpty) {
+      setState(() {
+        filteredStores = stores;
+      });
+    } else {
+      setState(() {
+        filteredStores = stores.where((store) {
+          final storeName = store['Name'].toString().toLowerCase();
+          final query = searchQuery.toLowerCase();
+          return storeName.contains(query);
+        }).toList();
+      });
+    }
   }
-   @override
-  Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    throw UnimplementedError();
-  }
+}
 
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    // TODO: search 
-    return ListView.builder(itemCount: list.length,
-    itemBuilder: (context, i) {
-    return Text(list[i]["Name"]);
-    },);
-  }
-  
- 
-
-}      
+      

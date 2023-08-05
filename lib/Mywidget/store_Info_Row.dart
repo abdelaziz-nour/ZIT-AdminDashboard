@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:zit_admin_screens/api/apiRequests.dart';
+import 'package:zit_admin_screens/app_screens/stores.dart';
 
 import '../constant.dart';
 
@@ -19,16 +20,11 @@ class storeinforow extends StatelessWidget {
   DatabaseHelper databaseHelper = DatabaseHelper();
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
-     final isDesktop =MediaQuery.of(context).size.width>=1200;
-    final ismobile =MediaQuery.of(context).size.width<=600;
-
+    final StoreState;
+    final isDesktop =MediaQuery.of(context).size.width>=1200;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       return Container(
-        // width: screenWidth,
         height: 70,
         color: Pcolor,
         child: Column(
@@ -36,9 +32,7 @@ class storeinforow extends StatelessWidget {
             Row(
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-
-               
-                isDesktop?
+              isDesktop?
                 Expanded(
                   flex: 4,
                   child: Padding(
@@ -50,6 +44,7 @@ class storeinforow extends StatelessWidget {
                     ),
                   ),
                 ):Container(),
+                isDesktop?
                 Expanded(
                   flex: 4,
                   child: Padding(
@@ -61,12 +56,12 @@ class storeinforow extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                ),
+                ):Container(),
                 Expanded(
                   flex: 4,
                   child: Padding(
                      padding: EdgeInsets.only(top: 15.0, right: 120),
-
+                     
                     child: Text(
                       '$StoreName',
                       // ignore: prefer_const_constructors
@@ -74,20 +69,31 @@ class storeinforow extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
+                
+                if(StoreName !="None")
+                isDesktop?
+                 Expanded(
                   flex: 4,
                   child: Padding(
-
-                    padding: EdgeInsets.only(top: 15.0, right: 140),
-                    child: Text(
+                  padding: EdgeInsets.only(top: 15.0, right: 140) ,
+                   child: Text(
                       '$Storestate',
-
-                      // ignore: prefer_const_constructors
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                Padding(
+                      textAlign: TextAlign.center,
+                   style: TextStyle(fontWeight: FontWeight.bold),
+                   ),)
+                   ):Container(),
+                   if(StoreName=="None")
+                   Expanded(
+                  flex: 4,
+                  child: Padding(
+                  padding: EdgeInsets.only(top: 15.0, right: 40) ,
+                   child: Text(
+                      '  تم حذف المتجر ',
+                   style: TextStyle(fontWeight: FontWeight.bold),
+                   ),)
+                   ),
+                   if(StoreName!="None")
+                 Padding(
 
                   padding:
                       const EdgeInsets.only(right: 100.0,left: 50, top: 10, bottom: 8),
@@ -101,7 +107,7 @@ class storeinforow extends StatelessWidget {
                                   RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
                           ))),
-                      child: Text(
+                      child: const Text(
                         'حذف المتجر',
                         style: TextStyle(
                             fontSize: 20,
@@ -114,8 +120,18 @@ class storeinforow extends StatelessWidget {
                           await databaseHelper.deleteStore(id: StoreID);
                       }),
                 ),
+                 if(StoreName=="None")
+             Padding(
+
+                  padding:
+                      const EdgeInsets.only(right: 150.0,left: 50,  bottom: 8),
+
+                  child:Text("  ")
+                  ),
               ],
             ),
+           
+            
             Expanded(
               child: Container(
                   // width: screenWidth,

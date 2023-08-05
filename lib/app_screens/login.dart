@@ -108,7 +108,7 @@ class loginState extends State<log_in> {
                               });
                             },
                             child:  Icon(passToggle?
-                              Icons.visibility:Icons.visibility_off,
+                              Icons.visibility_off:Icons.visibility,
                                 color: Pcolor),
                           ),
                           hintText: "أدخل كلمة السر ",
@@ -154,10 +154,16 @@ class loginState extends State<log_in> {
                                 MaterialPageRoute(builder: (context) {
                               return const board();
                             }));
+                          
+                        
+                        
                           } else {
                             print(databaseHelper.success);
                           }
-                        }
+                          
+                        },
+                         
+                        
                      // },
                     ),
                     const Center(

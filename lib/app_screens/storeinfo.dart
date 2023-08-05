@@ -22,6 +22,7 @@ class storeinfoState extends State<storeinfo> {
 
   @override
   Widget build(BuildContext context) {
+    
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
      final isDesktop =MediaQuery.of(context).size.width>=1200;
@@ -223,7 +224,7 @@ class storeinfoState extends State<storeinfo> {
 
                         // Use the stored user data here
                         List usersData = snapshot.data ?? [];
-
+                      
                         return ListView.builder(
                           shrinkWrap: true,
                           primary: false,
@@ -240,13 +241,8 @@ class storeinfoState extends State<storeinfo> {
 
 
                             );
+                            
 
-                                // snapshot.data![index]['id'],
-                                // snapshot.data![index]['UserName'],
-                                // snapshot.data![index]['Email'],
-                                // snapshot.data![index]['Store'],
-                                // snapshot.data![index]['Store']);
-                                
                               
 
                           },
