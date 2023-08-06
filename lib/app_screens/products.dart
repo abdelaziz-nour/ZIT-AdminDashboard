@@ -213,7 +213,9 @@ class productsState extends State<products> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const CircularProgressIndicator(); // Show a loading indicator while data is being fetched
+                          return Center(child: const CircularProgressIndicator(
+                            color: Pcolor,
+                          )); // Show a loading indicator while data is being fetched
                         }
                         return ListView.builder(
                           shrinkWrap: true,

@@ -145,6 +145,15 @@ class loginState extends State<log_in> {
                         ),
                       ),
                       onPressed: () async {
+                         showDialog(context: context, 
+                            builder: (context){
+                              return Center(
+                              child: CircularProgressIndicator(
+                                color: Pcolor,
+                              ),
+                            );}
+
+                              );  
                        // if (LoginformKey.currentState!.validate()) {
                           await databaseHelper.loginData(
                               username: usernameController.text,

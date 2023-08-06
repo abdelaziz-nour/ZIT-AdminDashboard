@@ -227,7 +227,9 @@ class allProductscreenState extends State<allProductscreen> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return const CircularProgressIndicator();
+                            return Center(child: const CircularProgressIndicator(
+                              color: Pcolor,
+                            ));
                           } else {
                             return ListView.builder(
                               shrinkWrap: true,

@@ -66,7 +66,9 @@ class storeState extends State<store> {
       stream: _storeStreamController.stream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator(
+            color: Pcolor,
+          ));
         } else {
           List<dynamic> storesData = snapshot.data ?? [];
           print(storesData);
@@ -112,9 +114,7 @@ class storeState extends State<store> {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             prefixIcon: IconButton(icon:Icon(Icons.search, color: Pcolor),
-                            onPressed: () {
-                             ///////////////////////////////////
-                            },),
+                            onPressed: () {},),
                           ),
                         ),
                       ),
@@ -149,14 +149,15 @@ class storeState extends State<store> {
                         itemCount: storesData.length,
                         itemBuilder: (context, index) {
                           // Use Storecard widget here
-                          return SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Storecard(
-                              'http://vzzoz.pythonanywhere.com${storesData[index]['Image']}',
-                              storesData[index]['Name'],
-                              storesData[index]['Owner'],
-                              id: storesData[index]['id'],
-                            ),
+                          return Row(
+                            children: [
+                              Storecard(
+                                'http://vzzoz.pythonanywhere.com${storesData[index]['Image']}',
+                                storesData[index]['Name'],
+                                storesData[index]['Owner'],
+                                id: storesData[index]['id'],
+                              ),
+                            ],
                           );
                         },
                       ),

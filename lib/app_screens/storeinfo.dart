@@ -200,7 +200,7 @@ class storeinfoState extends State<storeinfo> {
                           ),
                         ),
                         const Padding(
-                          padding: EdgeInsets.only(top: 15.0, right: 130),
+                          padding: EdgeInsets.only(top: 15.0, right: 150),
                           // ignore: prefer_const_constructors
                           child: Text(
                             ' حالة المتجر',
@@ -219,7 +219,10 @@ class storeinfoState extends State<storeinfo> {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const CircularProgressIndicator();
+                          return Center(
+                            child: const CircularProgressIndicator(
+                              color: Pcolor,
+                            ));
                         }
 
                         // Use the stored user data here

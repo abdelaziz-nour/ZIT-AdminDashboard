@@ -165,22 +165,7 @@ class orderitemscreenState extends State<orderitemscreen> {
                     color: Colors.white,
                     child: orderitemWidget(
                              OrderItems: OrderItems,)
-
-                    //     ListView.builder(
-                    //   primary: false,
-                    //   shrinkWrap: true,
-                    //   itemCount: OrderItems.length,
-                    //   itemBuilder: (context, index) {
-                    //     return orderitemWidget(
-                    //       Quantity: OrderItems[index]['Quantity'].toString(),
-                    //       price: OrderItems[index]['Price'].toString(),
-                    //       productname: OrderItems[index]['ProductName'].toString(),
-                    //       OrderItems: [index], 
-                    //     );
-                    //   },
-                    // )
-                   // )
-                 //   )
+                    
          ) )]);
         }));
   }

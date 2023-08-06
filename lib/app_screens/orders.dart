@@ -226,7 +226,9 @@ class orderscreenState extends State<orderscreen> {
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return const CircularProgressIndicator();
+                            return Center(child: const CircularProgressIndicator(
+                              color: Pcolor,
+                            ));
                           } else {
                             return ListView.builder(
                               shrinkWrap: true,
