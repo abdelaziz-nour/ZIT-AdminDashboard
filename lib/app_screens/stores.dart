@@ -24,17 +24,14 @@ class storeState extends State<store> {
   List<dynamic> filteredStores = [];
   DatabaseHelper databaseHelper = DatabaseHelper();
   StreamController<List<dynamic>> _storeStreamController = StreamController();
- 
-  
 
   @override
   void initState() {
-     fetchData();
+    fetchData();
     super.initState();
     // Fetch the stores data and update the StreamController
     getStoresData().then((data) {
       _storeStreamController.add(data);
-      
     });
   }
 
@@ -48,7 +45,6 @@ class storeState extends State<store> {
     return await databaseHelper.getStores();
   }
 
-
   void fetchData() async {
     List<dynamic> fetchedStores = await databaseHelper.getStores();
     setState(() {
@@ -56,121 +52,125 @@ class storeState extends State<store> {
       filteredStores = fetchedStores;
     });
   }
-   @override
+
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
     // Use StreamBuilder to listen to the stream and update the UI.
     return StreamBuilder<List<dynamic>>(
-      stream: _storeStreamController.stream,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator(
-            color: Pcolor,
-          ));
-        } else {
-          List<dynamic> storesData = snapshot.data ?? [];
-          print(storesData);
-          return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Pcolor,
-              title: const Center(
-                child: Text(
-                  'المتاجر',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  )))),
-          body: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: screenWidth / 1.5,
-                          top: screenHeight / 25,
-                          right: screenWidth / 15,
-                        ),
-                        child: TextField(
-                          onChanged: (value) {
-                            setState(() {
-                              searchQuery = value;
-                              filterStores();
-                            });
-                          },
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Colors.black,
+        stream: _storeStreamController.stream,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+                child: CircularProgressIndicator(
+              color: Pcolor,
+            ));
+          } else {
+            List<dynamic> storesData = snapshot.data ?? [];
+            print(storesData);
+            return Scaffold(
+              appBar: AppBar(
+                  backgroundColor: Pcolor,
+                  title: const Center(
+                      child: Text('المتاجر',
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          )))),
+              body: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            left: screenWidth / 1.5,
+                            top: screenHeight / 25,
+                            right: screenWidth / 15,
+                          ),
+                          child: TextField(
+                            onChanged: (value) {
+                              setState(() {
+                                searchQuery = value;
+                                filterStores();
+                              });
+                            },
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.black,
+                                ),
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                              borderRadius: BorderRadius.circular(20),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Pcolor),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              prefixIcon: IconButton(
+                                icon: Icon(Icons.search, color: Pcolor),
+                                onPressed: () {},
+                              ),
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Pcolor),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            prefixIcon: IconButton(icon:Icon(Icons.search, color: Pcolor),
-                            onPressed: () {},),
                           ),
                         ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Padding(
-                        padding:
-                            EdgeInsets.only(right: screenWidth / 15, top: 10),
-                        child: TextButton(
-                          child: const Text(
-                            "اضافة متجر جديد",
-                            style: TextStyle(
-                              color: Pcolor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding:
+                              EdgeInsets.only(right: screenWidth / 15, top: 10),
+                          child: TextButton(
+                            child: const Text(
+                              "اضافة متجر جديد",
+                              style: TextStyle(
+                                color: Pcolor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
                             ),
+                            onPressed: () async {
+                              List<dynamic> usersData =
+                                  await databaseHelper.getUsers();
+                              addDialog(context: context, usersData: usersData);
+                            },
                           ),
-                          onPressed: () async {
-                            List<dynamic> usersData =
-                                await databaseHelper.getUsers();
-                            addDialog(context: context, usersData: usersData);
-                          },
                         ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        primary: false,
-                        itemCount: storesData.length,
-                        itemBuilder: (context, index) {
-                          // Use Storecard widget here
-                          return Row(
-                            children: [
-                              Storecard(
-                                'http://vzzoz.pythonanywhere.com${storesData[index]['Image']}',
-                                storesData[index]['Name'],
-                                storesData[index]['Owner'],
-                                id: storesData[index]['id'],
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    )
-                  ],
-                );
-              },
-            ),
-          );
-        }});
-        }
+                      Expanded(
+                          flex: 2,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            primary: false,
+                            itemCount: filteredStores
+                                .length, // Use filteredStores.length
+                            itemBuilder: (context, index) {
+                              return Row(
+                                children: [
+                                  Storecard(
+                                    'http://vzzoz.pythonanywhere.com${filteredStores[index]['Image']}',
+                                    filteredStores[index]['Name'],
+                                    filteredStores[index]['Owner'],
+                                    id: filteredStores[index]['id'],
+                                  ),
+                                ],
+                              );
+                            },
+                          ))
+                    ],
+                  );
+                },
+              ),
+            );
+          }
+        });
+  }
 
-         void filterStores() {
+  void filterStores() {
     if (searchQuery.isEmpty) {
       setState(() {
         filteredStores = stores;
@@ -186,5 +186,3 @@ class storeState extends State<store> {
     }
   }
 }
-
-      
