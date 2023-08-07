@@ -159,7 +159,7 @@ class orderscreenState extends State<orderscreen> {
                   width: screenWidth,
                   height: screenHeight,
                   color: Colors.white,
-                  child: Column(
+                  child: ListView(
                     children: [
                       Container(
                         width: screenWidth,
@@ -170,7 +170,7 @@ class orderscreenState extends State<orderscreen> {
                             isDesktop
                                 ? Padding(
                                     padding: EdgeInsets.only(
-                                        top: 15.0, right: isDesktop ? 50 : 20),
+                                        top: 15.0, right: isDesktop ? screenWidth/20 : screenWidth/6),
                                     child: Text(
                                       ' رقم الطلب',
                                       style: TextStyle(
@@ -179,9 +179,9 @@ class orderscreenState extends State<orderscreen> {
                                   )
                                 : Container(),
                             isDesktop
-                                ? const Padding(
+                                ?  Padding(
                                     padding:
-                                        EdgeInsets.only(top: 15.0, right: 100),
+                                        EdgeInsets.only(top: 15.0, right: screenWidth/15),
                                     // ignore: prefer_const_constructors
                                     child: Text(
                                       '  المتجر ',
@@ -191,9 +191,9 @@ class orderscreenState extends State<orderscreen> {
                                   )
                                 : Container(),
                             isDesktop
-                                ? const Padding(
+                                ?  Padding(
                                     padding:
-                                        EdgeInsets.only(top: 15.0, right: 150),
+                                        EdgeInsets.only(top: 15.0, right: screenWidth/9.5),
                                     // ignore: prefer_const_constructors
                                     child: Text(
                                       '  المشتري ',
@@ -202,16 +202,16 @@ class orderscreenState extends State<orderscreen> {
                                     ),
                                   )
                                 : Container(),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 15.0, right: 200),
+                             Padding(
+                              padding: EdgeInsets.only(top: 15.0, right: isDesktop?  screenWidth/5.5:screenWidth/3),
                               // ignore: prefer_const_constructors
                               child: Text(
                                 ' تاريخ الطلب',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 15.0, right: 160),
+                             Padding(
+                              padding: EdgeInsets.only(top: 15.0, right:isDesktop? screenWidth/8:screenWidth/4),
                               // ignore: prefer_const_constructors
                               child: Text(
                                 '  المبلغ ',

@@ -25,7 +25,7 @@ class loginState extends State<log_in> {
         backgroundColor: Pcolor,
         body: Center(
             child: Container(
-                height: screenHeight / 1.8,
+                height: screenHeight / 1.7,
                 width: screenWidth / 2.8,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -51,7 +51,14 @@ class loginState extends State<log_in> {
                       padding: EdgeInsets.all(screenHeight / 22),
                       child: const Align(
                           alignment: Alignment.topCenter,
-                          child: Text('تسجيل الدخول')),
+                          child: Text('تسجيل الدخول',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "body",
+                            fontSize: 15,
+                            fontStyle: FontStyle.italic
+                          ),
+                          )),
                     ),
                     Padding(
                       padding: EdgeInsets.all(screenHeight / 22),

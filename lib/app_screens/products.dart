@@ -163,7 +163,7 @@ class productsState extends State<products> {
               width: 200,
               height: screenHeight,
               color: Colors.white,
-              child: Column(
+              child: ListView(
                 children: [
                   Container(
                     width: 1440,

@@ -291,81 +291,84 @@ class boardState extends State<board> {
                         Padding(
                           padding: EdgeInsets.only(
                               right: screenWidth / 4, top: screenHeight / 4),
-                          child: Container(
-                            width: 141,
-                            height: 141,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.storefront_outlined,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(right: 10, top: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return const store();
-                                      }));
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "المتاجر",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 17),
-                                      ),
-                                    ),
+                          child: InkWell(
+                            onTap: () {
+                                        Navigator.push(context,
+                                            MaterialPageRoute(builder: (context) {
+                                          return const store();
+                                        }));
+                                      }, 
+                            child: Container(
+                              width: 141,
+                              height: 141,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.storefront_outlined,
+                                    color: Colors.white,
+                                    size: 20,
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 10, top: 10),
+                                     child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "المتاجر",
+                                          style: TextStyle(
+                                              color: Colors.white, fontSize: 17),
+                                        ),
+                                      ),
+                                    
+                                  ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(90),
+                                  color:
+                                      const Color.fromARGB(255, 234, 160, 133)),
                             ),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(90),
-                                color:
-                                    const Color.fromARGB(255, 234, 160, 133)),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(
                               right: screenWidth / 7, top: screenHeight / 4),
-                          child: Container(
-                            width: 141,
-                            height: 141,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.person,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 10),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return storeinfo();
-                                      }));
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "المستخدمين",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 17),
-                                      ),
-                                    ),
+                          child: InkWell(
+                            onTap:() {
+                                        Navigator.push(context,
+                                            MaterialPageRoute(builder: (context) {
+                                          return storeinfo();
+                                        }));
+                                      }, 
+                            child: Container(
+                              width: 141,
+                              height: 141,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.person,
+                                    color: Colors.white,
+                                    size: 20,
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 10),
+                                     
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "المستخدمين",
+                                          style: TextStyle(
+                                              color: Colors.white, fontSize: 17),
+                                        ),
+                                      ),
+                                    
+                                  ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(90),
+                                  color:
+                                      const Color.fromARGB(255, 227, 136, 102)),
                             ),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(90),
-                                color:
-                                    const Color.fromARGB(255, 227, 136, 102)),
                           ),
                         ),
                       ]),
@@ -373,78 +376,84 @@ class boardState extends State<board> {
                         Padding(
                           padding: EdgeInsets.only(
                               right: screenWidth / 4, top: screenHeight / 6),
-                          child: Container(
-                            width: 141,
-                            height: 141,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.production_quantity_limits_outlined,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return allProductscreen();
-                                    }));
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "جميع المنتجات",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 18),
-                                    ),
-
+                          child: InkWell(
+                            onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return allProductscreen();
+                                      }));
+                                    },
+                            child: Container(
+                              width: 141,
+                              height: 141,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.production_quantity_limits_outlined,
+                                    color: Colors.white,
+                                    size: 20,
                                   ),
-                                ),
-                              ],
+                                   Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "جميع المنتجات",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 18),
+                                      ),
+                          
+                                    ),
+                                  
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(90),
+                                  color:
+                                      const Color.fromARGB(255, 236, 180, 160)),
                             ),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(90),
-                                color:
-                                    const Color.fromARGB(255, 236, 180, 160)),
                           ),
                         ),
 
                         Padding(
                           padding: EdgeInsets.only(
                               right: screenWidth / 7, top: screenHeight / 6),
-                          child: Container(
-                            width: 141,
-                            height: 141,
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.list,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                                GestureDetector(
-                                  onTap: ()  {
-                                    
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return orderscreen();
-                                    }));
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "جميع الطلبات",
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 18),
-                                    ),
-
+                          child: InkWell(
+                            onTap:()  {
+                                      
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return orderscreen();
+                                      }));
+                                    },
+                            child: Container(
+                              width: 141,
+                              height: 141,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.list,
+                                    color: Colors.white,
+                                    size: 20,
                                   ),
-                                ),
-                              ],
+                                   Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "جميع الطلبات",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 18,
+                                          
+                                            ),
+                                            
+                                            
+                                      ),
+                          
+                                    ),
+                                  
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(90),
+                                  color: Pcolor),
                             ),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(90),
-                                color: Pcolor),
                           ),
                         ),
 
