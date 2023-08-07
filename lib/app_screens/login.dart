@@ -12,9 +12,9 @@ class log_in extends StatefulWidget {
 
 class loginState extends State<log_in> {
   final LoginformKey = GlobalKey<FormState>();
-    final PasswordController = TextEditingController();
-    final usernameController = TextEditingController();
-    bool passToggle=true;
+  final PasswordController = TextEditingController();
+  final usernameController = TextEditingController();
+  bool passToggle = true;
 
   DatabaseHelper databaseHelper = DatabaseHelper();
   @override
@@ -25,7 +25,7 @@ class loginState extends State<log_in> {
         backgroundColor: Pcolor,
         body: Center(
             child: Container(
-                height: 400,
+                height: screenHeight / 1.8,
                 width: screenWidth / 2.8,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -56,26 +56,25 @@ class loginState extends State<log_in> {
                     Padding(
                       padding: EdgeInsets.all(screenHeight / 22),
                       child: TextFormField(
-
-                          controller: usernameController,
-                          decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
-                                ),
-                                borderRadius: BorderRadius.circular(20)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color.fromARGB(255, 117, 170, 188),
-                                ),
-                                borderRadius: BorderRadius.circular(20)),
-                            prefixIcon: const Icon(
-                              Icons.person,
-                              color: Color.fromARGB(255, 117, 170, 188),
-                            ),
-                            hintText: "أدخل اسم المستخدم",
-                            // hintStyle: Color. fromARGB(255, 117, 170, 188),
+                        controller: usernameController,
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.black,
+                              ),
+                              borderRadius: BorderRadius.circular(20)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color.fromARGB(255, 117, 170, 188),
+                              ),
+                              borderRadius: BorderRadius.circular(20)),
+                          prefixIcon: const Icon(
+                            Icons.person,
+                            color: Color.fromARGB(255, 117, 170, 188),
                           ),
+                          hintText: "أدخل اسم المستخدم",
+                          // hintStyle: Color. fromARGB(255, 117, 170, 188),
+                        ),
                         //     validator: (value) {
                         //   if(value!=null){
                         //     return "هذا الحقل مطلوب";
@@ -84,8 +83,7 @@ class loginState extends State<log_in> {
                         //     return null;
                         //   }
                         // },
-                          ),
-
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.all(screenHeight / 22),
@@ -104,11 +102,13 @@ class loginState extends State<log_in> {
                           prefixIcon: InkWell(
                             onTap: () {
                               setState(() {
-                                passToggle=!passToggle;
+                                passToggle = !passToggle;
                               });
                             },
-                            child:  Icon(passToggle?
-                              Icons.visibility_off:Icons.visibility,
+                            child: Icon(
+                                passToggle
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
                                 color: Pcolor),
                           ),
                           hintText: "أدخل كلمة السر ",
@@ -123,7 +123,6 @@ class loginState extends State<log_in> {
                         //     return null;
                         //   }
                         // },
-
                       ),
                     ),
                     ElevatedButton(
@@ -145,35 +144,30 @@ class loginState extends State<log_in> {
                         ),
                       ),
                       onPressed: () async {
-                         showDialog(context: context, 
-                            builder: (context){
+                        showDialog(
+                            context: context,
+                            builder: (context) {
                               return Center(
-                              child: CircularProgressIndicator(
-                                color: Pcolor,
-                              ),
-                            );}
+                                child: CircularProgressIndicator(
+                                  color: Pcolor,
+                                ),
+                              );
+                            });
+                        // if (LoginformKey.currentState!.validate()) {
+                        await databaseHelper.loginData(
+                            username: usernameController.text,
+                            password: PasswordController.text);
+                        if (databaseHelper.success == true) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const board();
+                          }));
+                        } else {
+                          print(databaseHelper.success);
+                        }
+                      },
 
-                              );  
-                       // if (LoginformKey.currentState!.validate()) {
-                          await databaseHelper.loginData(
-                              username: usernameController.text,
-                              password: PasswordController.text);
-                          if (databaseHelper.success == true) {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return const board();
-                            }));
-                          
-                        
-                        
-                          } else {
-                            print(databaseHelper.success);
-                          }
-                          
-                        },
-                         
-                        
-                     // },
+                      // },
                     ),
                     const Center(
                       child: Padding(
