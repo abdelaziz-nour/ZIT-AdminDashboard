@@ -164,6 +164,7 @@ class loginState extends State<log_in> {
                           }));
                         } else {
                           print(databaseHelper.success);
+                          Navigator.pop(context);
                         }
                       },
 
