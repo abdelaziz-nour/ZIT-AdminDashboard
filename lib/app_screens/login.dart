@@ -51,13 +51,13 @@ class loginState extends State<log_in> {
                       padding: EdgeInsets.all(screenHeight / 22),
                       child: const Align(
                           alignment: Alignment.topCenter,
-                          child: Text('تسجيل الدخول',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "body",
-                            fontSize: 15,
-                            fontStyle: FontStyle.italic
-                          ),
+                          child: Text(
+                            'تسجيل الدخول',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "body",
+                                fontSize: 15,
+                                fontStyle: FontStyle.italic),
                           )),
                     ),
                     Padding(
