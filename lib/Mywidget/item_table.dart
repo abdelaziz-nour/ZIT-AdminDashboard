@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zit_admin_screens/constant.dart';
 
 
 class orderitemWidget extends StatelessWidget {
@@ -10,9 +11,11 @@ class orderitemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
+      body: Container(
+        padding: EdgeInsets.only(top:35,left:screenWidth/3),
         child: DataTable(
           columns: [
             DataColumn(
@@ -20,7 +23,10 @@ class orderitemWidget extends StatelessWidget {
                 'اسم المنتج',
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
-                  color: Color.fromARGB(255, 11, 35, 55),
+                  color:Pcolor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15
+
                 ),
               ),
             ),
@@ -29,7 +35,10 @@ class orderitemWidget extends StatelessWidget {
                 'السعر',
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
-                  color: Color.fromARGB(255, 11, 35, 55),
+                  color: Pcolor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15
+
                 ),
               ),
             ),
@@ -38,7 +47,10 @@ class orderitemWidget extends StatelessWidget {
                 'الكمية',
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
-                  color: Color.fromARGB(255, 11, 35, 55),
+                  color: Pcolor,
+                  fontWeight: FontWeight.bold,
+                  fontSize:15
+                  
                 ),
               ),
             ),
@@ -54,16 +66,32 @@ class orderitemWidget extends StatelessWidget {
                 DataCell(
                   Text(
                     productName,
+                    style: TextStyle(
+                      color: Colors.black
+                    
+
+                    ),
+
                   ),
+                  
                 ),
                 DataCell(
                   Text(
                     price.toString(),
+                     style: TextStyle(
+                      color: Colors.black
+                      
+                    ),
                   ),
                 ),
                 DataCell(
                   Text(
                     quantity.toString(),
+                     style: TextStyle(
+                      color:Colors.black
+                      
+                      
+                    ),
                   ),
                 ),
               ],

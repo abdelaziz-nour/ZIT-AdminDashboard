@@ -17,7 +17,8 @@ class orderinforow extends StatelessWidget {
     this.Buyer,
     this.orderdate,
     this.orderamount,
-    this.OrderItems,
+    this.OrderItems, 
+  
   );
 
   @override
@@ -56,7 +57,7 @@ class orderinforow extends StatelessWidget {
                         flex: 5,
                         child: Padding(
                           padding:
-                              EdgeInsets.only(top: 12.0, right: 50, bottom: 10),
+                              EdgeInsets.only(top: 12.0, right:  isDesktop ? screenWidth/20 : screenWidth/6, bottom: 10),
                           child: Text(
                             '$ordernum ',
                             style: TextStyle(fontWeight: FontWeight.bold),

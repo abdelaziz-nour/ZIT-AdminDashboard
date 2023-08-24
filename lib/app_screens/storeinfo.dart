@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zit_admin_screens/Mywidget/store_Info_Row.dart';
 import 'package:zit_admin_screens/api/apiRequests.dart';
-import 'package:zit_admin_screens/app_screens/container.dart';
 import 'package:zit_admin_screens/constant.dart';
 
 import 'admin_board.dart';
@@ -173,8 +172,8 @@ class storeinfoState extends State<storeinfo> {
                     child: Row(
                       children: [
                             isDesktop
-                            ? const Padding(
-                                padding: EdgeInsets.only(top: 15.0, right: 100),
+                            ?  Padding(
+                                padding: EdgeInsets.only(top: 15.0, right:screenWidth/10),
                                 child: Text(
                                   'اسم المستخدم',
                                   style: TextStyle(fontWeight: FontWeight.bold),
@@ -182,8 +181,8 @@ class storeinfoState extends State<storeinfo> {
                               )
                             : Container(),
                         isDesktop?
-                        const Padding(
-                          padding: EdgeInsets.only(top: 15.0, right: 100),
+                         Padding(
+                          padding: EdgeInsets.only(top: 15.0, right: screenWidth/11),
 
                           child: Text(
                             'البريد الالكتروني ',
@@ -191,7 +190,7 @@ class storeinfoState extends State<storeinfo> {
                           ),
                         ):Container(),
                          Padding(
-                          padding: EdgeInsets.only(top: 15.0, right:isDesktop? 120:25),
+                          padding: EdgeInsets.only(top: 15.0, right:isDesktop? screenWidth/10:screenWidth/3),
 
                           // ignore: prefer_const_constructors
                           child: Text(
@@ -199,8 +198,8 @@ class storeinfoState extends State<storeinfo> {
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 15.0, right: 150),
+                         Padding(
+                          padding: EdgeInsets.only(top: 15.0, right: screenWidth/10),
                           // ignore: prefer_const_constructors
                           child: Text(
                             ' حالة المتجر',

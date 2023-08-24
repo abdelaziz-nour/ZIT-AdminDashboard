@@ -160,7 +160,7 @@ class allProductscreenState extends State<allProductscreen> {
                     width: 200,
                     height: screenHeight,
                     color: Colors.white,
-                    child: Column(children: [
+                    child: ListView(children: [
                       Container(
                         width: screenWidth,
                         height: 70,

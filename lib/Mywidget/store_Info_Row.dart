@@ -21,6 +21,8 @@ class storeinforow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final StoreState;
+     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     final isDesktop =MediaQuery.of(context).size.width>=1200;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -36,7 +38,7 @@ class storeinforow extends StatelessWidget {
                 Expanded(
                   flex: 4,
                   child: Padding(
-                  padding: EdgeInsets.only(top: 10.0, right: 100),
+                  padding: EdgeInsets.only(top: 10.0, right: screenWidth/10),
                     child: Text(
                       '$username ',
                       // ignore: prefer_const_constructors
@@ -48,7 +50,7 @@ class storeinforow extends StatelessWidget {
                 Expanded(
                   flex: 4,
                   child: Padding(
-                     padding: EdgeInsets.only(top: 15.0, right: isDesktop?80:20),
+                     padding: EdgeInsets.only(top: 15.0, right: isDesktop?screenWidth/20.5:screenWidth/6),
 
                     child: Text(
                       '$email ',
@@ -60,7 +62,7 @@ class storeinforow extends StatelessWidget {
                 Expanded(
                   flex: 4,
                   child: Padding(
-                     padding: EdgeInsets.only(top: 15.0, right: 120),
+                     padding: EdgeInsets.only(top: 15.0, right: isDesktop? screenWidth/8.9:screenWidth/6),
                      
                     child: Text(
                       '$StoreName',
@@ -75,7 +77,7 @@ class storeinforow extends StatelessWidget {
                  Expanded(
                   flex: 4,
                   child: Padding(
-                  padding: EdgeInsets.only(top: 15.0, right: 140) ,
+                  padding: EdgeInsets.only(top: 15.0, right: screenWidth/10) ,
                    child: Text(
                       '$Storestate',
                       textAlign: TextAlign.center,
@@ -86,7 +88,7 @@ class storeinforow extends StatelessWidget {
                    Expanded(
                   flex: 4,
                   child: Padding(
-                  padding: EdgeInsets.only(top: 15.0, right: 40) ,
+                  padding: EdgeInsets.only(top: 15.0, right: screenWidth/11,bottom: 8) ,
                    child: Text(
                       '  تم حذف المتجر ',
                    style: TextStyle(fontWeight: FontWeight.bold),

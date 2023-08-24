@@ -32,7 +32,7 @@ class allproductinforow extends StatelessWidget {
       // width: screenWidth,
       height: 70,
       color: Pcolor,
-      child: Column(
+      child: ListView(
         children: [
           Row(
             // ignore: prefer_const_literals_to_create_immutables
